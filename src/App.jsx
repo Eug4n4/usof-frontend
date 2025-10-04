@@ -1,7 +1,7 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-
+import Posts from "./components/posts/Posts";
 function App() {
   return (
     <Routes>
@@ -29,6 +29,7 @@ function Home() {
   return (
     <div>
       <h2>Home</h2>
+      <Posts />
     </div>
   );
 }
