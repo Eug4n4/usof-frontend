@@ -1,0 +1,25 @@
+.header, #header_search {
+    font-size: large;
+    padding: 10px;
+}
+
+#header_search {
+    border: 1px solid black;
+    border-radius: 0 10em 10em 0;
+}
+
+.search_group {
+    display: flex;
+}
+
+.header.button {
+    color: blue;
+    text-align: center;
+    cursor: pointer;
+}
+
+.header_list {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
