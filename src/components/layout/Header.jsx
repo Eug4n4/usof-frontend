@@ -3,7 +3,7 @@ import "../../assets/css/header.css";
 
 function Header() {
   return (
-    <header className="header">
+    <header>
       <ul className="header_list">
         <li>
           <div className="header_left">
@@ -26,6 +26,9 @@ function Header() {
                 id="header_search"
                 placeholder="Search..."
               />
+              <button type="submit" className="search_button">
+                <i className="fa fa-search"></i>
+              </button>
             </form>
           </div>
         </li>
@@ -56,9 +59,15 @@ function Header() {
                 +
               </button>
             </Link>
-            <Link to="/profile">
-              <img src="/react.svg" alt="user" />
-            </Link>
+            <div>
+              <Link to="/profile">
+                <img src="/react.svg" alt="user" />
+              </Link>
+            </div>
+            <div className="user_info">
+              <p>Login</p>
+              <p>User</p>
+            </div>
           </div>
         </li>
       </ul>
