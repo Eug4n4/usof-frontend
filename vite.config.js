@@ -7,7 +7,7 @@ function getConfig(configEnv) {
     const envData = loadEnv(configEnv.mode, process.cwd(), 'VITE')
     return {
         plugins: [react()],
-        server: { port: parseInt(envData.VITE_REACT_PORT) }
+        server: { port: parseInt(envData.VITE_FRONTEND_PORT) }
     }
 }
 
