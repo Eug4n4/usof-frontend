@@ -1,7 +1,9 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import Posts from "./components/posts/Posts";
+import Sidebar from "./components/layout/Sidebar";
+import Home from "./components/Home";
+
 function App() {
   return (
     <Routes>
@@ -18,19 +20,12 @@ function Layout() {
   return (
     <>
       <Header />
-      <hr></hr>
-      <Outlet />
+      <div className="main_wrapper">
+        <Sidebar />
+        <Outlet />
+      </div>
       <Footer />
     </>
-  );
-}
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-      <Posts />
-    </div>
   );
 }
 

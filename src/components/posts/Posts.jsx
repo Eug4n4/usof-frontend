@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api.js";
+import Card from "./Card.jsx";
 function Posts() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -19,18 +20,21 @@ function Posts() {
     };
   }, []);
   return (
-    <div>
+    <div className="posts container">
       {posts.length === 0 ? (
         <p>Loading...</p>
       ) : (
         posts.map((post) => {
           return (
-            <div key={post.id}>
-              <p>{post.title}</p>
-              <p>{post.content}</p>
-              <p>{post.publish_date}</p>
-              <p>{post.author}</p>
-            </div>
+            <Card
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              content={post.content}
+              author={post.author}
+              publishDate={post.publish_date}
+              categories={post.categories}
+            />
           );
         })
       )}

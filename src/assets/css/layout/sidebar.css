@@ -1,0 +1,18 @@
+.sidebar {
+    padding-top: 24px;
+}
+
+.sidebar_list > li > div > a{
+    display: flex;
+    text-decoration: none;
+    padding: 8px;
+    align-items: center;
+}
+
+.sidebar_list > li > div > a:hover {
+    background-color: whitesmoke;
+}
+
+.sidebar_list > li > div > a > p {
+    padding-left: 8px;
+}
