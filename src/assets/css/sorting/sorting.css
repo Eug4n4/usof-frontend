@@ -1,0 +1,33 @@
+.sorting_options {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+
+}
+
+.sorting_options > li a {
+    text-decoration: none;
+    padding: 9px;
+}
+
+.sorting_options > li a:visited, .sorting_options > li a:link {
+    color: var(--text-color-black);
+}
+
+.sorting_options > li a:hover, .filter_container:hover {
+    background-color: whitesmoke;
+}
+
+.sorting_container {
+    border: var(--main-border);
+    padding: 3px;
+    border-radius: 8px;
+}
+
+.filter_container, .sorting_options {
+    align-items: center;
+}
+
+.filter_container {
+    display: flex;
+}

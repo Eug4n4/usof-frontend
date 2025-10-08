@@ -2,6 +2,10 @@
     padding-top: 24px;
 }
 
+.sidebar_item > a:link, .sidebar_item > a:visited {
+    color: var(--text-color-black)
+}
+
 .sidebar_list > li > div > a{
     display: flex;
     text-decoration: none;

@@ -1,11 +1,15 @@
 .post {
-    border: 2px solid #d9d9d9;
+    border: var(--main-border);
     margin: 5px;
     padding: 8px 24px 8px 24px;
 }
 
 .content > p {
     margin: 5px 0 5px 0;
+}
+
+.credentials, .content, .categories, .title {
+    color: var(--text-color-black);
 }
 
 .categories > ul {
@@ -17,10 +21,11 @@
     margin: 8px 8px 0 0;
     border-radius: 7px;
     padding: 6px;
-    background-color: #242424;
+    background-color: var(--text-color-black);
     color: whitesmoke;
 }
 
-.title > h3 > a {
+.title > h3 > a:link, .title > h3 > a:visited {
     text-decoration: none;
+    color: blue;
 }
