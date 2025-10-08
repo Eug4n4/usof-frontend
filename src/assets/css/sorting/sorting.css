@@ -22,12 +22,25 @@
     border: var(--main-border);
     padding: 3px;
     border-radius: 8px;
+    align-self: flex-end;
 }
 
-.filter_container, .sorting_options {
-    align-items: center;
+.sorting_wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .filter_container {
+    padding: 5.5px;
+}
+
+.filter_container > button, .sorting_options {
+    align-items: center;
+}
+
+.filter_container > button {
     display: flex;
+    background: none;
+    cursor: pointer;
+    color: var(--text-color-black);
 }

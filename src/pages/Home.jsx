@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import api from "../../api/api.js";
-import Card from "./Card.jsx";
-import Sorting from "../sorting/Sorting.jsx";
-import "../../assets/css/posts/sorting.css";
-import Pagination from "../pagination/Pagination.jsx";
-import PageSize from "../pagination/PageSize.jsx";
-import "../../assets/css/posts/pagination.css";
+import api from "../api/api.js";
+import Card from "../components/posts/Card.jsx";
+import Sorting from "../components/sorting/Sorting.jsx";
+import Pagination from "../components/pagination/Pagination.jsx";
+import PageSize from "../components/pagination/PageSize.jsx";
 
-function Posts() {
+import "../assets/css/posts/sorting.css";
+import "../assets/css/posts/pagination.css";
+
+function Home() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     let ignore = false;
@@ -15,7 +16,6 @@ function Posts() {
       .get("/posts")
       .then((result) => {
         if (!ignore) {
-          console.log(result.data);
           setPosts(result.data.data);
         }
       })
@@ -57,4 +57,4 @@ function Posts() {
   );
 }
 
-export default Posts;
+export default Home;
