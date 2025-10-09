@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import "../../assets/css/layout/header.css";
+import { useContext } from "react";
+import AuthContext from "../../contexts/AuthContext";
 
 function Header() {
+  const { user } = useContext(AuthContext);
+
   return (
     <header>
       <ul className="header_list">
@@ -65,8 +69,8 @@ function Header() {
               </Link>
             </div>
             <div className="user_info">
-              <p>Login</p>
-              <p>User</p>
+              <p>{user ? user.login : "Login"}</p>
+              <p>{user ? user.role : "User"}</p>
             </div>
           </div>
         </li>

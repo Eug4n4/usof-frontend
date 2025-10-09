@@ -5,13 +5,17 @@ import Sidebar from "./components/layout/Sidebar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import NoMatch from "./pages/404";
-
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import AuthProvider from "./contexts/AuthProvider";
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route path="signin" element={<Login />} />
+        <Route path="signup" element={<Register />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
@@ -21,14 +25,16 @@ function App() {
 function Layout() {
   return (
     <>
-      <Header />
-      <div className="main_wrapper">
-        <Sidebar />
-        <main id="content">
-          <Outlet />
-        </main>
-      </div>
-      <Footer />
+      <AuthProvider>
+        <Header />
+        <div className="main_wrapper">
+          <Sidebar />
+          <main id="content">
+            <Outlet />
+          </main>
+        </div>
+        <Footer />
+      </AuthProvider>
     </>
   );
 }

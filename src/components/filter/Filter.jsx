@@ -1,6 +1,8 @@
+import "../../assets/css/filter/filter.css";
+
 function Filter() {
   return (
-    <form className="filter_form">
+    <form className="filter_form" id="filter">
       <fieldset>
         <legend>By category</legend>
         <label htmlFor="name">Name</label>
