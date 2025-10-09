@@ -13,11 +13,9 @@
 
 .search_parent {
     flex-grow: 2;
+    margin: 0 5vw 0 5vw;
 }
 
-.search_group {
-    margin: 0 1vw 0 1vw;
-}
 
 .header, #header_search {
     font-size: large;
