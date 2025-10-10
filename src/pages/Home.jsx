@@ -16,7 +16,9 @@ function Home() {
       .get("/posts")
       .then((result) => {
         if (!ignore) {
-          setPosts(result.data.data);
+          if (result.data?.data) {
+            setPosts(result.data.data);
+          }
         }
       })
       .catch(console.log);

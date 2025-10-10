@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import api from "../../api/api";
 import { Link } from "react-router-dom";
-import AuthContext from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import "../../assets/css/auth/login.css";
+import AuthService from "../../api/services/AuthService";
 
 function Login() {
   const { setUser } = useContext(AuthContext);
@@ -10,8 +10,7 @@ function Login() {
     e.preventDefault();
     const formData = new FormData(e.target);
     try {
-      const response = await api.post(
-        "auth/login",
+      const response = await AuthService.login(
         Object.fromEntries(formData.entries())
       );
       setUser(response.data);

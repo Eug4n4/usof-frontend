@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../assets/css/layout/header.css";
 import { useContext } from "react";
-import AuthContext from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function Header() {
   const { user } = useContext(AuthContext);
@@ -43,21 +43,27 @@ function Header() {
                 Categories
               </button>
             </Link>
-            <Link to="/signin">
-              <button type="button" className="header button">
-                Sign In
-              </button>
-            </Link>
-            <Link to="/signup">
-              <button type="button" className="header button">
-                Sign Up
-              </button>
-            </Link>
-            <Link to="/signout">
-              <button type="button" className="header button">
-                Sign Out
-              </button>
-            </Link>
+            {user ? (
+              <Link to="/signout">
+                <button type="button" className="header button">
+                  Sign Out
+                </button>
+              </Link>
+            ) : (
+              <>
+                <Link to="/signin">
+                  <button type="button" className="header button">
+                    Sign In
+                  </button>
+                </Link>
+                <Link to="/signup">
+                  <button type="button" className="header button">
+                    Sign Up
+                  </button>
+                </Link>
+              </>
+            )}
+
             <Link to="/post">
               <button type="button" className="header button">
                 +

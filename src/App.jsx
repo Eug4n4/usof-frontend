@@ -7,7 +7,8 @@ import About from "./pages/About";
 import NoMatch from "./pages/404";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
-import AuthProvider from "./contexts/AuthProvider";
+import { AuthProvider } from "./contexts/AuthContext";
+
 function App() {
   return (
     <Routes>
