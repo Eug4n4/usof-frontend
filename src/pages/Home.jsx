@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/api.js";
-import Card from "../components/posts/Card.jsx";
+import PostCard from "../components/posts/Card.jsx";
 import Sorting from "../components/sorting/Sorting.jsx";
 import Pagination from "../components/pagination/Pagination.jsx";
 import PageSize from "../components/pagination/PageSize.jsx";
@@ -38,7 +38,7 @@ function Home() {
         ) : (
           posts.map((post) => {
             return (
-              <Card
+              <PostCard
                 key={post.id}
                 id={post.id}
                 title={post.title}

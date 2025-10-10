@@ -1,19 +1,20 @@
 import { Link } from "react-router-dom";
 import "../../assets/css/posts/card.css";
-function Card({ id, title, content, author, publishDate, categories }) {
+import Card from "../card/Card";
+import Title from "../card/Title";
+import Paragraph from "../card/Paragraph";
+function PostCard({ id, title, content, author, publishDate, categories }) {
   return (
-    <section className="post">
-      <div className="title">
-        <h3>
-          <Link to={`/post/${id}`}>{title}</Link>
-        </h3>
-      </div>
+    <Card>
+      <Title>
+        <Link to={`/post/${id}`}>{title}</Link>
+      </Title>
       <div className="content">
-        <p>{content}</p>
+        <Paragraph text={content} />
       </div>
       <div className="credentials">
-        <p className="author">By: {author}</p>
-        <p className="date">Published at: {publishDate}</p>
+        <Paragraph className="author" text={`By: ${author}`} />
+        <Paragraph className="date" text={`Published at ${publishDate}`} />
       </div>
       <div className="categories">
         <ul>
@@ -22,8 +23,8 @@ function Card({ id, title, content, author, publishDate, categories }) {
           })}
         </ul>
       </div>
-    </section>
+    </Card>
   );
 }
 
-export default Card;
+export default PostCard;

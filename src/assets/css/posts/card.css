@@ -1,4 +1,4 @@
-.post {
+.card {
     border: var(--main-border);
     margin: 5px;
     padding: 8px 24px 8px 24px;
@@ -25,7 +25,7 @@
     color: whitesmoke;
 }
 
-.title > h3 > a:link, .title > h3 > a:visited {
+h3 > a:link, h3 > a:visited {
     text-decoration: none;
     color: blue;
 }
