@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../assets/css/layout/header.css";
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import AuthContext from "../../contexts/AuthContext";
 
 function Header() {
   const { user } = useContext(AuthContext);

@@ -7,7 +7,9 @@ import About from "./pages/About";
 import NoMatch from "./pages/404";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
-import { AuthProvider } from "./contexts/AuthContext";
+import AuthProvider from "./contexts/AuthProvider";
+import Profile from "./pages/Profile";
+import Categories from "./pages/Categories";
 
 function App() {
   return (
@@ -17,6 +19,10 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="signin" element={<Login />} />
         <Route path="signup" element={<Register />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="categories" element={<Categories />} />
+        <Route path="post" element={<div>New post</div>} />
+
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
