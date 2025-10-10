@@ -58,7 +58,7 @@ function Header() {
                 Sign Out
               </button>
             </Link>
-            <Link to="/create-post">
+            <Link to="/post">
               <button type="button" className="header button">
                 +
               </button>
