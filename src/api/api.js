@@ -21,8 +21,10 @@ api.interceptors.response.use((config) => {
             return api.request(request);
         } catch (e) {
             console.error(`Auth error: ${e}`)
+            throw e;
         }
     }
+    throw new Error(error.message)
 
 })
 
