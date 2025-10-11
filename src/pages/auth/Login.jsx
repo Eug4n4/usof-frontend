@@ -1,11 +1,21 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import "../../assets/css/auth/login.css";
 import AuthService from "../../api/services/AuthService";
 
 function Login() {
-  const { setUser } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      if (window.history.state) {
+        navigate(-1, { replace: true });
+      } else {
+        navigate("/", { replace: true });
+      }
+    }
+  }, [user]);
   async function handleLogin(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -18,7 +28,9 @@ function Login() {
       console.log(error);
     }
   }
-
+  if (user) {
+    return null;
+  }
   return (
     <form method="get" id="login_form" onSubmit={handleLogin}>
       <h2>Sign In</h2>
