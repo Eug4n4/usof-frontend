@@ -11,7 +11,9 @@ class AuthService {
     static async refresh() {
         return api.get("auth/refresh");
     }
-
+    static async logout() {
+        return api.post("auth/logout");
+    }
 }
 
 export default AuthService;
