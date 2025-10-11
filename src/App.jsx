@@ -9,7 +9,10 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import AuthProvider from "./contexts/AuthProvider";
 import Profile from "./pages/Profile";
-import Categories from "./pages/Categories";
+import Categories from "./pages/categories/Categories";
+import EditCategory from "./pages/categories/EditCategory";
+import RoleChecker from "./components/RoleChecker";
+import Logout from "./pages/auth/Logout";
 
 function App() {
   return (
@@ -19,8 +22,18 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="signin" element={<Login />} />
         <Route path="signup" element={<Register />} />
+        <Route path="signout" element={<Logout />} />
         <Route path="profile" element={<Profile />} />
         <Route path="categories" element={<Categories />} />
+
+        <Route
+          path="categories/:id"
+          element={
+            <RoleChecker roles={["admin"]}>
+              <EditCategory />
+            </RoleChecker>
+          }
+        />
         <Route path="post" element={<div>New post</div>} />
 
         <Route path="*" element={<NoMatch />} />
@@ -40,8 +53,8 @@ function Layout() {
             <Outlet />
           </main>
         </div>
-        <Footer />
       </AuthProvider>
+      <Footer />
     </>
   );
 }
