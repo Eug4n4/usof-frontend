@@ -39,14 +39,21 @@ header {
     align-items: center;
 }
 
-.header_button {
-    text-wrap: nowrap;
+.header.button {
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 8px;
 }
 
-.user_info {
+.header.button:hover {
+    background-color: #d9d9d9;
+}
+
+.user_info, .header.button {
     text-align: center;
     text-wrap: nowrap;
     font-size: large;
+    color: var(--text-color-black);
 }
 
 
