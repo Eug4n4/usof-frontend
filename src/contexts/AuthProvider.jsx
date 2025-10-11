@@ -6,13 +6,20 @@ import AuthService from "../api/services/AuthService";
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
   const ignore = useRef(false);
   useEffect(() => {
     async function handleRefresh() {
-      await AuthService.refresh();
-      const access = Cookies.get("access");
-      if (access !== undefined) {
-        setUser(jwtDecode(access));
+      try {
+        await AuthService.refresh();
+        const access = Cookies.get("access");
+        if (access !== undefined) {
+          setUser(jwtDecode(access));
+        }
+      } catch (e) {
+        setUser(null);
+      } finally {
+        setLoading(false);
       }
     }
     if (user == undefined) {
@@ -20,6 +27,7 @@ function AuthProvider({ children }) {
       if (access !== undefined) {
         const payload = jwtDecode(access);
         setUser(payload);
+        setLoading(false);
       } else {
         if (!ignore.current) {
           handleRefresh();
@@ -30,7 +38,7 @@ function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, loading }}>
       {children}
     </AuthContext.Provider>
   );
