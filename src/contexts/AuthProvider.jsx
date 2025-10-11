@@ -1,24 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AuthContext from "./AuthContext";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import AuthService from "../api/services/AuthService";
-import { useNavigate } from "react-router-dom";
+
 function AuthProvider({ children }) {
   const [user, setUser] = useState();
-  const navigate = useNavigate();
+  const ignore = useRef(false);
   useEffect(() => {
-    let ignore = false;
     async function handleRefresh() {
-      try {
-        await AuthService.refresh();
-        console.log("here");
-        const access = Cookies.get("access");
-        if (access !== undefined) {
-          setUser(jwtDecode(access));
-        }
-      } catch (e) {
-        navigate("/signin", { replace: true });
+      await AuthService.refresh();
+      const access = Cookies.get("access");
+      if (access !== undefined) {
+        setUser(jwtDecode(access));
       }
     }
     if (user == undefined) {
@@ -27,13 +21,11 @@ function AuthProvider({ children }) {
         const payload = jwtDecode(access);
         setUser(payload);
       } else {
-        if (!ignore) {
+        if (!ignore.current) {
           handleRefresh();
+          ignore.current = true;
         }
       }
-      return () => {
-        ignore = true;
-      };
     }
   }, []);
 
