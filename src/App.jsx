@@ -13,6 +13,7 @@ import Categories from "./pages/categories/Categories";
 import EditCategory from "./pages/categories/EditCategory";
 import RoleChecker from "./components/RoleChecker";
 import Logout from "./pages/auth/Logout";
+import DeleteCategory from "./pages/categories/DeleteCategory";
 
 function App() {
   return (
@@ -27,10 +28,18 @@ function App() {
         <Route path="categories" element={<Categories />} />
 
         <Route
-          path="categories/:id"
+          path="categories/:id/edit"
           element={
             <RoleChecker roles={["admin"]}>
               <EditCategory />
+            </RoleChecker>
+          }
+        />
+        <Route
+          path="categories/:id/delete"
+          element={
+            <RoleChecker roles={["admin"]}>
+              <DeleteCategory />
             </RoleChecker>
           }
         />

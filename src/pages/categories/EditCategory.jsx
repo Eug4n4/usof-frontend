@@ -6,9 +6,10 @@ function EditCategory() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const params = useParams();
+  const endpoint = `categories/${params.id}`;
   useEffect(() => {
     let ignore = false;
-    api.get(`categories/${params.id}`).then((result) => {
+    api.get(endpoint).then((result) => {
       if (!ignore && result.data) {
         setTitle(result.data.title);
         setDescription(result.data.description);
@@ -17,29 +18,32 @@ function EditCategory() {
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [params.id]);
 
-  function handleTitle(e) {
-    setTitle(e.target.value);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    await api
+      .patch(endpoint, Object.fromEntries(formData))
+      .then(console.log)
+      .catch(console.log);
   }
 
-  function handleDescription(e) {
-    setDescription(e.target.value);
-  }
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <fieldset>
         <input
           type="text"
           name="title"
           id="title"
           value={title}
-          onChange={handleTitle}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
           id="description"
+          name="description"
           value={description}
-          onChange={handleDescription}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </fieldset>
       <button type="submit">Edit</button>
