@@ -14,9 +14,6 @@
     color: var(--text-color-black);
 }
 
-.sorting_options > li a:hover, .filter_container:hover {
-    background-color: whitesmoke;
-}
 
 .sorting_container {
     border: var(--main-border);
@@ -30,9 +27,6 @@
     flex-direction: column;
 }
 
-.filter_container {
-    padding: 5.5px;
-}
 
 .filter_container > button, .sorting_options {
     align-items: center;
@@ -40,7 +34,5 @@
 
 .filter_container > button {
     display: flex;
-    background: none;
-    cursor: pointer;
-    color: var(--text-color-black);
+    padding: 7px;
 }

@@ -1,37 +1,35 @@
 import { useState } from "react";
 import "../../assets/css/sorting/sorting.css";
-import { Link } from "react-router-dom";
 import Filter from "../filter/Filter";
+import ButtonLink from "../button/ButtonLink";
+import Button from "../button/Button";
 
 function Sorting() {
   const baseURL = import.meta.env.BASE_URL;
   const [hiddenFilter, setFilterHidden] = useState(true);
 
-  function handleFilterClick() {
-    setFilterHidden(!hiddenFilter);
-  }
   return (
     <div className="sorting_wrapper">
       <div className="sorting_container">
         <ul className="sorting_options">
           <li>
-            <Link to={baseURL}>Newest</Link>
+            <ButtonLink to={baseURL}>Newest</ButtonLink>
           </li>
           <li>
-            <Link to={baseURL}>Oldest</Link>
+            <ButtonLink to={baseURL}>Oldest</ButtonLink>
           </li>
           <li>
-            <Link to={baseURL}>Most liked</Link>
+            <ButtonLink to={baseURL}>Most liked</ButtonLink>
           </li>
           <li>
-            <Link to={baseURL}>Least liked</Link>
+            <ButtonLink to={baseURL}>Least liked</ButtonLink>
           </li>
           <li>
             <div className="filter_container">
-              <button onClick={handleFilterClick}>
+              <Button onClick={() => setFilterHidden(!hiddenFilter)}>
                 <img src="/filter_icon_black.svg" alt="filter" />
                 <p>Filter</p>
-              </button>
+              </Button>
             </div>
           </li>
         </ul>

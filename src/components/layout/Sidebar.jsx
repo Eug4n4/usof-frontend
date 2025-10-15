@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import "../../assets/css/layout/sidebar.css";
+import ButtonLink from "../button/ButtonLink";
 
 function Sidebar() {
   return (
@@ -7,26 +7,26 @@ function Sidebar() {
       <ul className="sidebar_list">
         <li>
           <div className="sidebar_item">
-            <Link to="/">
+            <ButtonLink to="/">
               <img src="/home_icon_black.svg" height={30} width={30}></img>
               <p>Home</p>
-            </Link>
+            </ButtonLink>
           </div>
         </li>
         <li>
           <div className="sidebar_item">
-            <Link to="/categories">
+            <ButtonLink to="/categories">
               <img src="/category_icon_black.svg" height={30} width={30}></img>
               <p>Categories</p>
-            </Link>
+            </ButtonLink>
           </div>
         </li>
         <li>
           <div className="sidebar_item">
-            <Link to="/post">
+            <ButtonLink to="/post">
               <img src="/post_icon_black.svg" height={30} width={30}></img>
               <p>New post</p>
-            </Link>
+            </ButtonLink>
           </div>
         </li>
       </ul>

@@ -38,18 +38,12 @@ header {
     column-gap: 0.5vw;
     align-items: center;
 }
-
-.header.button {
-    background-color: transparent;
-    cursor: pointer;
-    border-radius: 8px;
+.user_avatar {
+    display: flex;
+    align-items: center;
 }
 
-.header.button:hover {
-    background-color: #d9d9d9;
-}
-
-.user_info, .header.button {
+.user_info {
     text-align: center;
     text-wrap: nowrap;
     font-size: large;
@@ -61,6 +55,3 @@ header {
     font: normal normal normal larger FontAwesome
 }
 
-.search_button {
-    padding: 7px;
-}
