@@ -13,3 +13,7 @@
 .sidebar_list > li > div > a > p {
     padding-left: 8px;
 }
+
+.sidebar_list > li > div > a > img {
+    max-width: 100%;
+}
