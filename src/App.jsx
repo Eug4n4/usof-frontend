@@ -14,6 +14,7 @@ import EditCategory from "./pages/categories/EditCategory";
 import RoleChecker from "./components/RoleChecker";
 import Logout from "./pages/auth/Logout";
 import DeleteCategory from "./pages/categories/DeleteCategory";
+import CreatePost from "./pages/post/CreatePost";
 
 function App() {
   return (
@@ -43,7 +44,7 @@ function App() {
             </RoleChecker>
           }
         />
-        <Route path="post" element={<div>New post</div>} />
+        <Route path="post" element={<CreatePost />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>

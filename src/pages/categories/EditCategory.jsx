@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../api/api";
-
+import Button from "../../components/button/Button";
 function EditCategory() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -46,7 +46,7 @@ function EditCategory() {
           onChange={(e) => setDescription(e.target.value)}
         />
       </fieldset>
-      <button type="submit">Edit</button>
+      <Button type="submit">Edit</Button>
     </form>
   );
 }
