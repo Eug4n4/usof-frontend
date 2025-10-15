@@ -13,8 +13,7 @@ api.interceptors.response.use((config) => {
         return Promise.reject(error?.message);
     }
     const request = error.config;
-
-    if (error.response.status === 401) {
+    if (error.response.status === 401 && request.url !== "auth/refresh") {
         try {
             console.log("refreshing tokens")
             await api.get("auth/refresh");
