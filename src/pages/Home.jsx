@@ -44,7 +44,9 @@ function Home() {
                 title={post.title}
                 content={post.content}
                 author={post.author}
-                publishDate={post.publish_date}
+                publishDate={Intl.DateTimeFormat("uk").format(
+                  new Date(post.publish_date)
+                )}
                 categories={post.categories}
               />
             );
