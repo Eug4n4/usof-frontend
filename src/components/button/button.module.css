@@ -1,0 +1,15 @@
+.button {
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 8px;
+    color: var(--text-color-black);
+    text-align: center;
+    text-wrap: nowrap;
+    font-size: large;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.button:hover {
+    background-color: #d9d9d9;
+}
