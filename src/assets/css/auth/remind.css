@@ -1,0 +1,12 @@
+#remind_form {
+    background-color: lavender;
+    justify-self: center;
+	position: absolute;
+    fieldset {
+	    display: flex;
+	    flex-direction: column;
+	    border-radius: 5%;
+	    text-align: center;
+    }
+
+}

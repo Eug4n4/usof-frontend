@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import "../../assets/css/auth/login.css";
@@ -7,6 +7,8 @@ import Button from "../../components/button/Button";
 
 function Login() {
   const { user, setUser } = useContext(AuthContext);
+  const [submitting, setSubmitting] = useState(false);
+
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
@@ -15,6 +17,7 @@ function Login() {
   }, [user]);
   async function handleLogin(e) {
     e.preventDefault();
+    setSubmitting(true);
     const formData = new FormData(e.target);
     try {
       const response = await AuthService.login(
@@ -23,6 +26,8 @@ function Login() {
       setUser(response.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setSubmitting(false);
     }
   }
   if (user) {
@@ -70,8 +75,8 @@ function Login() {
             />
           </div>
         </div>
-        <Button type="submit" id="submit_login">
-          Sign In
+        <Button type="submit" id="submit_login" disabled={submitting}>
+          {submitting ? "Submitting..." : "Sign In"}
         </Button>
       </fieldset>
       <div id="to_register">

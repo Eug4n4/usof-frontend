@@ -1,20 +1,24 @@
 import "../../assets/css/auth/register.css";
-import api from "../../api/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
+import AuthService from "../../api/services/AuthService";
+import { useState } from "react";
 function Register() {
+  const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
   async function handleRegister(e) {
     e.preventDefault();
+    setSubmitting(true);
     const formData = new FormData(e.target);
 
     try {
-      const response = await api.post(
-        "auth/register",
-        Object.fromEntries(formData.entries())
-      );
-      console.log(response.data);
+      const data = Object.fromEntries(formData);
+      await AuthService.register(data);
+      navigate("/signin");
     } catch (error) {
       console.log(error);
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -83,8 +87,8 @@ function Register() {
             />
           </div>
         </div>
-        <Button type="submit" id="submit_register">
-          Register now
+        <Button type="submit" id="submit_register" disabled={submitting}>
+          {submitting ? "Submitting..." : "Register now"}
         </Button>
       </section>
 

@@ -14,6 +14,10 @@ class AuthService {
     static async logout() {
         return api.post("auth/logout");
     }
+
+    static async sendResetPassword(data) {
+        return api.post("auth/password-reset", data);
+    }
 }
 
 export default AuthService;
