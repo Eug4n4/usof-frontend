@@ -85,6 +85,7 @@ function Login() {
           <br />
           <Link to={"/signup"}>Sign Up</Link>
         </p>
+        <Link to={"/password-reset"}>Forgot password?</Link>
       </div>
     </form>
   );

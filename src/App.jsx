@@ -16,6 +16,7 @@ import Logout from "./pages/auth/Logout";
 import DeleteCategory from "./pages/categories/DeleteCategory";
 import CreatePost from "./pages/post/CreatePost";
 import PasswordReset from "./pages/auth/PasswordReset";
+import SetNewPassword from "./pages/auth/SetNewPassword";
 
 function App() {
   return (
@@ -26,14 +27,8 @@ function App() {
         <Route path="signin" element={<Login />} />
         <Route path="signup" element={<Register />} />
         <Route path="signout" element={<Logout />} />
-        <Route
-          path="password-reset"
-          element={
-            <RoleChecker roles={["user", "admin"]}>
-              <PasswordReset />
-            </RoleChecker>
-          }
-        />
+        <Route path="password-reset/:token" element={<SetNewPassword />} />
+        <Route path="password-reset" element={<PasswordReset />} />
         <Route path="profile" element={<Profile />} />
         <Route path="categories" element={<Categories />} />
 

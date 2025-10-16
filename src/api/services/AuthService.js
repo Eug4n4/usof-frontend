@@ -18,6 +18,10 @@ class AuthService {
     static async sendResetPassword(data) {
         return api.post("auth/password-reset", data);
     }
+
+    static async confirmResetPassword(token, newPassword) {
+        return api.post(`auth/password-reset/${token}`, newPassword);
+    }
 }
 
 export default AuthService;
