@@ -1,6 +1,7 @@
 :root {
     --text-color-black: #242424;
     --text-font-size: 1rem;
+    --text-font-family: Helvetica;
 
     
     --main-border: 2px solid #d9d9d9;
