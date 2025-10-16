@@ -6,7 +6,7 @@ function Filter() {
       <fieldset>
         <legend>By category</legend>
         <label htmlFor="name">Name</label>
-        <input type="text" id="name" />
+        <input type="text" id="name" autoComplete="off" />
       </fieldset>
       <fieldset>
         <legend>By date</legend>

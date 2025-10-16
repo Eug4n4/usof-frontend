@@ -11,11 +11,7 @@ function RoleChecker({ roles = [], children }) {
         return navigate("/signin", { replace: true });
       }
       if (roles.length != 0 && !roles.includes(user.role)) {
-        if (window.history.state) {
-          navigate(-1);
-        } else {
-          navigate("/", { replace: true });
-        }
+        navigate("/", { replace: true });
       }
     }
   }, [user, loading]);

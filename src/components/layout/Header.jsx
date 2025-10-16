@@ -26,6 +26,7 @@ function Header() {
                 name="search"
                 id="header_search"
                 placeholder="Search..."
+                autoComplete="off"
               />
               <Button type="submit">
                 <i className="fa fa-search"></i>

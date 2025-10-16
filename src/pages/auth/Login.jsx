@@ -3,17 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import "../../assets/css/auth/login.css";
 import AuthService from "../../api/services/AuthService";
+import Button from "../../components/button/Button";
 
 function Login() {
   const { user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
-      if (window.history.state) {
-        navigate(-1, { replace: true });
-      } else {
-        navigate("/", { replace: true });
-      }
+      navigate("/", { replace: true });
     }
   }, [user]);
   async function handleLogin(e) {
@@ -38,6 +35,7 @@ function Login() {
         <div className="field_wrapper">
           <div className="form_field">
             <input
+              autoComplete="off"
               type="text"
               name="login"
               id="login"
@@ -49,10 +47,11 @@ function Login() {
         <div className="field_wrapper">
           <div className="form_field">
             <input
+              autoComplete="off"
               type="email"
               name="email"
               id="email"
-              placeholder="email"
+              placeholder="Email"
               required=""
             />
           </div>
@@ -60,6 +59,7 @@ function Login() {
         <div className="field_wrapper">
           <div className="form_field">
             <input
+              autoComplete="off"
               type="password"
               name="password"
               id="password"
@@ -70,9 +70,9 @@ function Login() {
             />
           </div>
         </div>
-        <button type="submit" id="submit_login">
+        <Button type="submit" id="submit_login">
           Sign In
-        </button>
+        </Button>
       </fieldset>
       <div id="to_register">
         <p>

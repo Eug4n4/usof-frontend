@@ -1,5 +1,7 @@
 import "../../assets/css/auth/register.css";
 import api from "../../api/api";
+import { Link } from "react-router-dom";
+import Button from "../../components/button/Button";
 function Register() {
   async function handleRegister(e) {
     e.preventDefault();
@@ -28,12 +30,14 @@ function Register() {
               id="full_name"
               placeholder="Full name"
               required
+              autoComplete="off"
             />
           </div>
         </div>
         <div className="field_wrapper">
           <div className="form_field">
             <input
+              autoComplete="off"
               type="text"
               name="login"
               id="login"
@@ -45,6 +49,7 @@ function Register() {
         <div className="field_wrapper">
           <div className="form_field">
             <input
+              autoComplete="off"
               type="email"
               name="email"
               id="email"
@@ -56,6 +61,7 @@ function Register() {
         <div className="field_wrapper">
           <div className="form_field">
             <input
+              autoComplete="off"
               type="password"
               name="password"
               id="password"
@@ -68,6 +74,7 @@ function Register() {
         <div className="field_wrapper">
           <div className="form_field">
             <input
+              autoComplete="off"
               type="password"
               name="password_confirm"
               id="confirm_password"
@@ -76,16 +83,16 @@ function Register() {
             />
           </div>
         </div>
-        <button type="submit" id="submit_register">
+        <Button type="submit" id="submit_register">
           Register now
-        </button>
+        </Button>
       </section>
 
       <div id="to_login">
         <p>
           Already have an account?
           <br />
-          <a href="#">Sign In</a>
+          <Link to={"/signin"}>Sign In</Link>
         </p>
       </div>
     </form>
