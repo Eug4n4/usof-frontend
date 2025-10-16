@@ -19,7 +19,9 @@ function PostCard({ id, title, content, author, publishDate, categories }) {
       <div className="categories">
         <ul>
           {categories.map((category) => {
-            return <li key={category.id}>{category.title}</li>;
+            if (category.id && category.title) {
+              return <li key={category.id}>{category.title}</li>;
+            }
           })}
         </ul>
       </div>
