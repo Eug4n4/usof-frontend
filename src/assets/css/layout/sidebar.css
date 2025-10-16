@@ -1,9 +1,12 @@
 .sidebar {
-    padding-top: 24px;
+    padding: 24px 24px 0 0;
+    border-right: 2px solid #f0f0f0;
 }
 
 .sidebar_list {
     list-style: none;
+    position: sticky;
+    top: 20px;
 }
 
 .sidebar_list > li > div > a{
