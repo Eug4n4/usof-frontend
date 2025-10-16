@@ -12,11 +12,8 @@ function Logout() {
       return;
     }
     ignore.current = true;
-    if (window.history.state) {
-      navigate(-1, { replace: true });
-    } else {
-      navigate("/", { replace: true });
-    }
+    navigate("/", { replace: true });
+
     if (user) {
       AuthService.logout();
       setUser(null);
