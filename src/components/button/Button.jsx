@@ -1,8 +1,8 @@
 import s from "./button.module.css";
 
-function Button({ children, ...rest }) {
+function Button({ children, className = "", ...rest }) {
   return (
-    <button className={s.button} {...rest}>
+    <button className={`${s.button} ${className}`} {...rest}>
       {children}
     </button>
   );
