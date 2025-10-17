@@ -1,0 +1,25 @@
+.form_wrapper {
+    display: flex;
+    justify-self: center;
+    border: var(--main-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+
+}
+
+.form_wrapper > form {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.form_wrapper > form button, .form_wrapper > form button:hover  {
+    background-color: var(--text-color-black);
+    color: #f0f0f0;
+}
+
+.form_wrapper > form:last-child {
+    text-align: center;
+}

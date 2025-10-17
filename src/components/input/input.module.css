@@ -1,0 +1,21 @@
+.input_wrapper {
+    display: flex;
+    width: fit-content;
+    position: relative;
+}
+
+.input_wrapper input {
+    padding: 0.5em;
+    line-height: 1.5rem;
+    border: 1px solid var(--text-color-black);
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.input_wrapper svg {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

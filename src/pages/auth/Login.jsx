@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
-import "../../assets/css/auth/login.css";
 import AuthService from "../../api/services/AuthService";
 import Button from "../../components/button/Button";
+import TextInput from "../../components/input/TextInput";
+import PasswordInput from "../../components/input/PasswordInput";
+import Form from "../../components/form/Form";
 
 function Login() {
   const { user, setUser } = useContext(AuthContext);
@@ -34,51 +36,26 @@ function Login() {
     return null;
   }
   return (
-    <form method="get" id="login_form" onSubmit={handleLogin}>
+    <Form method="get" id="login_form" onSubmit={handleLogin}>
       <h2>Sign In</h2>
-      <fieldset id="form_inputs">
-        <div className="field_wrapper">
-          <div className="form_field">
-            <input
-              autoComplete="off"
-              type="text"
-              name="login"
-              id="login"
-              placeholder="Login"
-              required=""
-            />
-          </div>
-        </div>
-        <div className="field_wrapper">
-          <div className="form_field">
-            <input
-              autoComplete="off"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              required=""
-            />
-          </div>
-        </div>
-        <div className="field_wrapper">
-          <div className="form_field">
-            <input
-              autoComplete="off"
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              defaultValue=""
-              maxLength={16}
-              required=""
-            />
-          </div>
-        </div>
-        <Button type="submit" id="submit_login" disabled={submitting}>
-          {submitting ? "Submitting..." : "Sign In"}
-        </Button>
-      </fieldset>
+      <TextInput placeholder="Login" name="login" id="login" required />
+      <TextInput
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email"
+        required
+      />
+      <PasswordInput
+        placeholder="Password"
+        name="password"
+        id="password"
+        minLength={8}
+        required
+      />
+      <Button type="submit" id="submit_login" disabled={submitting}>
+        {submitting ? "Submitting..." : "Sign In"}
+      </Button>
       <div id="to_register">
         <p>
           New here?
@@ -87,7 +64,7 @@ function Login() {
         </p>
         <Link to={"/password-reset"}>Forgot password?</Link>
       </div>
-    </form>
+    </Form>
   );
 }
 

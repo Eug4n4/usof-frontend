@@ -1,7 +1,8 @@
 import Button from "../../components/button/Button";
-import "../../assets/css/auth/remind.css";
 import AuthService from "../../api/services/AuthService";
 import { useState } from "react";
+import Form from "../../components/form/Form";
+import Input from "../../components/input/Input";
 function PasswordReset() {
   const [submitting, setSubmitting] = useState(false);
 
@@ -13,22 +14,19 @@ function PasswordReset() {
     setSubmitting(false);
   }
   return (
-    <form id="remind_form" onSubmit={handleSubmit}>
-      <fieldset>
-        <h3>Password Reminder</h3>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          required=""
-          placeholder="Email"
-          autoComplete="off"
-        />
-        <Button type="submit" disabled={submitting}>
-          {submitting ? "Submitting..." : "Send recovery email"}
-        </Button>
-      </fieldset>
-    </form>
+    <Form id="remind_form" onSubmit={handleSubmit}>
+      <h3>Password Reminder</h3>
+      <Input
+        type="email"
+        name="email"
+        id="email"
+        required
+        placeholder="Email"
+      />
+      <Button type="submit" disabled={submitting}>
+        {submitting ? "Submitting..." : "Send recovery email"}
+      </Button>
+    </Form>
   );
 }
 
