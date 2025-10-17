@@ -1,9 +1,9 @@
 import s from "./form.module.css";
 
-function Form({ children, props }) {
+function Form({ children, ...props }) {
   return (
-    <div className={s.form_wrapper} {...props}>
-      <form>{children}</form>
+    <div className={s.form_wrapper}>
+      <form {...props}>{children}</form>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import "../../assets/css/posts/card.css";
-import Card from "../card/Card";
-import Title from "../card/Title";
-import Paragraph from "../card/Paragraph";
+import Card from "./Card";
+import Title from "./Title";
+import Paragraph from "./Paragraph";
 function PostCard({ id, title, content, author, publishDate, categories }) {
   return (
     <Card>

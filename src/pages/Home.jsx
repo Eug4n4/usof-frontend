@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/api.js";
-import PostCard from "../components/posts/Card.jsx";
+import PostCard from "../components/card/PostCard.jsx";
 import Sorting from "../components/sorting/Sorting.jsx";
 import Pagination from "../components/pagination/Pagination.jsx";
 import PageSize from "../components/pagination/PageSize.jsx";

@@ -1,30 +1,32 @@
 import "../../assets/css/filter/filter.css";
-
+import Button from "../button/Button";
+import Form from "../form/Form";
+import Input from "../input/Input";
 function Filter() {
   return (
-    <form className="filter_form" id="filter">
+    <Form>
       <fieldset>
         <legend>By category</legend>
         <label htmlFor="name">Name</label>
-        <input type="text" id="name" autoComplete="off" />
+        <Input type="text" id="name" autoComplete="off" />
       </fieldset>
       <fieldset>
         <legend>By date</legend>
-        <input type="date" name="" id="" />
-        <input type="date" name="" id="" />
+        <Input type="date" name="" id="" />
+        <Input type="date" name="" id="" />
       </fieldset>
       <fieldset>
         <legend>By status</legend>
-        <input type="radio" name="option" id="active" />
+        <Input type="radio" name="option" id="active" />
         <label htmlFor="active">Active</label>
-        <input type="radio" name="option" id="inactive" />
+        <Input type="radio" name="option" id="inactive" />
         <label htmlFor="inactive">Inactive</label>
       </fieldset>
       <fieldset>
-        <button type="submit">Apply</button>
-        <button type="reset">Reset</button>
+        <Button type="submit">Apply</Button>
+        <Button type="reset">Reset</Button>
       </fieldset>
-    </form>
+    </Form>
   );
 }
 
