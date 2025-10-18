@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import "../../assets/css/sorting/sorting.css";
 import Filter from "../filter/Filter";
 import ButtonLink from "../button/ButtonLink";
@@ -7,23 +7,28 @@ import s from "../button/button.module.css";
 function Sorting() {
   const baseURL = import.meta.env.BASE_URL;
   const [hiddenFilter, setFilterHidden] = useState(true);
-
+  const [activeSort, setActiveSort] = useState("newest");
+  const sortOptions = [
+    { key: "newest", label: "Newest" },
+    { key: "oldest", label: "Oldest" },
+    { key: "most-liked", label: "Most liked" },
+    { key: "most-disliked", label: "Most disliked" },
+  ];
   return (
     <div className="sorting_wrapper">
       <div className="sorting_container">
         <ul className="sorting_options">
-          <li>
-            <ButtonLink to={baseURL}>Newest</ButtonLink>
-          </li>
-          <li>
-            <ButtonLink to={baseURL}>Oldest</ButtonLink>
-          </li>
-          <li>
-            <ButtonLink to={baseURL}>Most liked</ButtonLink>
-          </li>
-          <li>
-            <ButtonLink to={baseURL}>Least liked</ButtonLink>
-          </li>
+          {sortOptions.map((option) => (
+            <li key={option.key}>
+              <ButtonLink
+                to={baseURL}
+                className={option.key === activeSort ? s.active : ""}
+                onClick={() => setActiveSort(option.key)}
+              >
+                {option.label}
+              </ButtonLink>
+            </li>
+          ))}
           <li>
             <div className="filter_container">
               <Button

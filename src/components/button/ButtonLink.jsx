@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import s from "./button.module.css";
-function ButtonLink({ to, children, ...rest }) {
+function ButtonLink({ to, className = "", children, ...rest }) {
   return (
-    <Link className={s.button} {...rest} to={to}>
+    <Link className={`${s.button} ${className}`} {...rest} to={to}>
       {children}
     </Link>
   );
