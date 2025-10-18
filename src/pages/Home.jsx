@@ -4,13 +4,13 @@ import PostCard from "../components/card/PostCard.jsx";
 import Sorting from "../components/sorting/Sorting.jsx";
 import Pagination from "../components/pagination/Pagination.jsx";
 import PageSize from "../components/pagination/PageSize.jsx";
+import { usePosts } from "../contexts/PostContext.jsx";
 
 import "../assets/css/posts/sorting.css";
 import "../assets/css/posts/pagination.css";
 
 function Home() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { state, dispatch } = usePosts();
   const dateTimeFormatter = useRef(
     Intl.DateTimeFormat("uk", {
       year: "numeric",
@@ -21,36 +21,37 @@ function Home() {
     })
   );
   useEffect(() => {
+    dispatch({ type: "load", data: true });
     let ignore = false;
     api
       .get("/posts")
       .then((result) => {
         if (!ignore) {
           if (result.data?.data) {
-            setPosts(result.data.data);
+            dispatch({ type: "set", data: result.data.data });
           }
         }
       })
       .catch(console.log)
       .finally(() => {
         if (!ignore) {
-          setLoading(false);
+          dispatch({ type: "load", data: false });
         }
       });
 
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [dispatch]);
 
   function renderState() {
-    if (loading) {
+    if (state.loading) {
       return <p>Loading...</p>;
     }
-    if (posts.length === 0) {
+    if (state.posts.length === 0) {
       return <p>{"No posts found :-("}</p>;
     }
-    return posts.map((post) => {
+    return state.posts.map((post) => {
       return (
         <PostCard
           key={post.id}

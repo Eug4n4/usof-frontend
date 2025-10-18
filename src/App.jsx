@@ -17,6 +17,7 @@ import DeleteCategory from "./pages/categories/DeleteCategory";
 import CreatePost from "./pages/post/CreatePost";
 import PasswordReset from "./pages/auth/PasswordReset";
 import SetNewPassword from "./pages/auth/SetNewPassword";
+import { PostProvider } from "./contexts/PostContext";
 
 function App() {
   return (
@@ -71,7 +72,9 @@ function Layout() {
         <div className="main_wrapper">
           <Sidebar />
           <main id="content">
-            <Outlet />
+            <PostProvider>
+              <Outlet />
+            </PostProvider>
           </main>
         </div>
       </AuthProvider>
