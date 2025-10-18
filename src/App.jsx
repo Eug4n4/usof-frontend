@@ -27,7 +27,6 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="signin" element={<Login />} />
         <Route path="signup" element={<Register />} />
-        <Route path="signout" element={<Logout />} />
         <Route path="password-reset/:token" element={<SetNewPassword />} />
         <Route path="password-reset" element={<PasswordReset />} />
         <Route path="profile" element={<Profile />} />

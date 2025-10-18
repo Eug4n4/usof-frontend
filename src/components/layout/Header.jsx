@@ -4,9 +4,15 @@ import AuthContext from "../../contexts/AuthContext";
 import ButtonLink from "../button/ButtonLink";
 import Button from "../button/Button";
 import TextInput from "../input/TextInput";
+import AuthService from "../../api/services/AuthService";
 
 function Header() {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
+
+  async function handleSignOut() {
+    await AuthService.logout();
+    setUser(null);
+  }
 
   return (
     <header>
@@ -37,7 +43,7 @@ function Header() {
           <div className="header_right">
             <ButtonLink to="/categories">Categories</ButtonLink>
             {user ? (
-              <ButtonLink to="/signout">Sign Out</ButtonLink>
+              <Button onClick={handleSignOut}>Sign Out</Button>
             ) : (
               <>
                 <ButtonLink to="/signin">Sign In</ButtonLink>
