@@ -1,10 +1,23 @@
 import "../../assets/css/pagination/pagination.css";
-import { NavLink } from "react-router-dom";
+import s from "../button/button.module.css";
+import { useState } from "react";
+import ButtonLink from "../button/ButtonLink";
 function Pagination() {
+  const [size, setSize] = useState(1);
   return (
     <div className="pages">
-      <NavLink className="page">1</NavLink>
-      <NavLink className="page">2</NavLink>
+      {[1, 2, 3].map((amount) => {
+        return (
+          <ButtonLink
+            to={"/"}
+            key={amount}
+            className={size === amount ? s.active : ""}
+            onClick={() => setSize(amount)}
+          >
+            {amount}
+          </ButtonLink>
+        );
+      })}
     </div>
   );
 }
