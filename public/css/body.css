@@ -4,8 +4,13 @@
     border: 0;
 }
 
+body {
+    display: flex;
+}
+
 #root {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     font-family: var(--text-font-family);
     min-height: 100vh;
