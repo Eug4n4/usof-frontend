@@ -2,6 +2,8 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useEffect, useRef } from "react";
 import Button from "../../components/button/Button";
+import Form from "../../components/form/Form";
+import TextInput from "../../components/input/TextInput";
 
 function CreatePost() {
   const editorRef = useRef(null);
@@ -22,7 +24,6 @@ function CreatePost() {
       [{ script: "sub" }, { script: "super" }],
       [{ size: ["small", false, "large", "huge"] }],
       [{ color: [] }, { background: [] }],
-      ["clean"],
     ];
 
     quillRef.current = new Quill(editorDiv, {
@@ -39,11 +40,11 @@ function CreatePost() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <fieldset>
+    <Form onSubmit={handleSubmit}>
+      <h2>New post</h2>
+      <fieldset style={{ minWidth: "100%" }}>
         <label htmlFor="title">Title: </label>
-        <input
-          type="text"
+        <TextInput
           name="title"
           id="title"
           placeholder="Title..."
@@ -63,7 +64,7 @@ function CreatePost() {
       </fieldset>
 
       <Button type="submit">Publish</Button>
-    </form>
+    </Form>
   );
 }
 export default CreatePost;

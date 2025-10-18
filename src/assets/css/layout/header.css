@@ -7,7 +7,7 @@
 }
 
 
-.search_group, .search_group.form, .search_group.form > input {
+.search_group, .search_group.form, .search_group.form div, .search_group.form div > input {
     flex-grow: 1;
 }
 
@@ -23,7 +23,7 @@
 }
 
 header {
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: var(--layout-border);
     padding: 10px;
 }
 

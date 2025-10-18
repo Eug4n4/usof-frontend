@@ -1,6 +1,5 @@
 .input_wrapper {
     display: flex;
-    width: fit-content;
     position: relative;
 }
 
@@ -10,6 +9,7 @@
     border: 1px solid var(--text-color-black);
     border-radius: 8px;
     margin: 5px;
+    flex-grow: 1;
 }
 
 .input_wrapper svg {

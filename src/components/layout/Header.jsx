@@ -3,6 +3,7 @@ import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import ButtonLink from "../button/ButtonLink";
 import Button from "../button/Button";
+import TextInput from "../input/TextInput";
 
 function Header() {
   const { user } = useContext(AuthContext);
@@ -20,13 +21,11 @@ function Header() {
         </li>
         <li className="search_parent">
           <div className="search_group">
-            <form action="" className="search_group form">
-              <input
-                type="text"
+            <form className="search_group form">
+              <TextInput
                 name="search"
                 id="header_search"
                 placeholder="Search..."
-                autoComplete="off"
               />
               <Button type="submit">
                 <i className="fa fa-search"></i>

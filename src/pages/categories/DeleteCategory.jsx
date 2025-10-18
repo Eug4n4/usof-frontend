@@ -1,6 +1,10 @@
 import api from "../../api/api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Form from "../../components/form/Form";
+import Button from "../../components/button/Button";
+import ButtonLink from "../../components/button/ButtonLink";
+
 function DeleteCategory() {
   const params = useParams();
   const endpoint = `categories/${params.id}`;
@@ -21,13 +25,14 @@ function DeleteCategory() {
     api.delete(endpoint).then(console.log).catch(console.log);
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
+      <h2>Delete category</h2>
       <p>{`Are you sure you want to delete category with the title: ${title} ?`}</p>
       <fieldset>
-        <button type="submit">Delete</button>
-        <button>Cancel</button>
+        <Button type="submit">Delete</Button>
+        <ButtonLink to="/">Cancel</ButtonLink>
       </fieldset>
-    </form>
+    </Form>
   );
 }
 

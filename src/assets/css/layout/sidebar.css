@@ -1,6 +1,6 @@
 .sidebar {
     padding: 24px 24px 0 0;
-    border-right: 2px solid #f0f0f0;
+    border-right: var(--layout-border);
 }
 
 .sidebar_list {
