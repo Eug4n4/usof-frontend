@@ -44,10 +44,16 @@ function Home() {
                 title={post.title}
                 content={post.content}
                 author={post.author}
-                publishDate={Intl.DateTimeFormat("uk").format(
-                  new Date(post.publish_date)
-                )}
+                publishDate={Intl.DateTimeFormat("uk", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }).format(new Date(post.publish_date))}
                 categories={post.categories}
+                likes={post.likes}
+                dislikes={post.dislikes}
               />
             );
           })

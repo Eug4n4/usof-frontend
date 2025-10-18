@@ -3,7 +3,16 @@ import "../../assets/css/posts/card.css";
 import Card from "./Card";
 import Title from "./Title";
 import Paragraph from "./Paragraph";
-function PostCard({ id, title, content, author, publishDate, categories }) {
+function PostCard({
+  id,
+  title,
+  content,
+  author,
+  publishDate,
+  categories,
+  likes,
+  dislikes,
+}) {
   return (
     <Card>
       <Title>
@@ -15,6 +24,10 @@ function PostCard({ id, title, content, author, publishDate, categories }) {
       <div className="credentials">
         <Paragraph className="author" text={`By: ${author}`} />
         <Paragraph className="date" text={`Published at ${publishDate}`} />
+      </div>
+      <div className="stats" style={{ display: "flex", gap: "10px" }}>
+        <Paragraph className={"likes"} text={`Likes: ${likes}`} />
+        <Paragraph className={"dislikes"} text={`Dislikes: ${dislikes}`} />
       </div>
       <div className="categories">
         <ul>
