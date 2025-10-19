@@ -12,6 +12,7 @@ import {
   pageSize,
 } from "../../features/state/categorySlice.js";
 import { usePagination } from "../../features/state/pagination.js";
+import { INITIAL_PAGE_SIZE } from "../../features/constants.js";
 
 function Categories() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function Categories() {
   const { user } = useContext(AuthContext);
   useEffect(() => {
     dispatch(currentPage(1));
-    dispatch(pageSize(5));
+    dispatch(pageSize(INITIAL_PAGE_SIZE));
     dispatch(getCategories());
   }, [dispatch]);
 

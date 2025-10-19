@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 
 import s from "../button/button.module.css";
 import "../../assets/css/sorting/sorting.css";
+import { INITIAL_PAGE_SIZE } from "../../features/constants";
 
 function Sorting({ getter, queryChanger, pageChanger, pageSizer }) {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function Sorting({ getter, queryChanger, pageChanger, pageSizer }) {
   ];
   const handleSortClick = (option) => {
     dispatch(pageChanger(1));
-    dispatch(pageSizer(5));
+    dispatch(pageSizer(INITIAL_PAGE_SIZE));
     setActiveSort(option.key);
     dispatch(getter(option.query));
     dispatch(queryChanger(option.query));

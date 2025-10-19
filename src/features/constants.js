@@ -1,0 +1,3 @@
+const INITIAL_PAGE_SIZE = 5;
+
+export { INITIAL_PAGE_SIZE };
