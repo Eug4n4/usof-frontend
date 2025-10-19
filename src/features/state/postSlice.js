@@ -7,7 +7,7 @@ export const getPosts = createAsyncThunk(
             const response = await PostService.get(query)
             return response.data;
         } catch (e) {
-            return rejectWithValue(e?.message)
+            return rejectWithValue(e.message)
         }
     }
 )
