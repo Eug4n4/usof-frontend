@@ -1,12 +1,11 @@
-import "../../assets/css/pagination/pagination.css";
-import { NavLink } from "react-router-dom";
 import ButtonLink from "../button/ButtonLink";
 import { useState } from "react";
 import s from "../button/button.module.css";
+import p from "./pagination.module.css";
 function PageSize() {
   const [size, setSize] = useState(5);
   return (
-    <div className="page_sizes">
+    <div className={p.page_sizes}>
       {[5, 10, 15].map((amount) => (
         <ButtonLink
           to={"/"}

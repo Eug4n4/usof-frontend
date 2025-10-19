@@ -3,10 +3,9 @@ import api from "../../api/api.js";
 import Card from "../../components/card/Card.jsx";
 import Paragraph from "../../components/card/Paragraph.jsx";
 import Title from "../../components/card/Title.jsx";
-import Pagination from "../../components/pagination/Pagination.jsx";
-import PageSize from "../../components/pagination/PageSize.jsx";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import { Link } from "react-router-dom";
+import PaginationContainer from "../../components/pagination/PaginationContainer.jsx";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
@@ -80,10 +79,7 @@ function Categories() {
           );
         })}
       </ul>
-      <div className="pagination_container">
-        <Pagination />
-        <PageSize />
-      </div>
+      <PaginationContainer />
     </>
   );
 }

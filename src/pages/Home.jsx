@@ -2,12 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import api from "../api/api.js";
 import PostCard from "../components/card/PostCard.jsx";
 import Sorting from "../components/sorting/Sorting.jsx";
-import Pagination from "../components/pagination/Pagination.jsx";
-import PageSize from "../components/pagination/PageSize.jsx";
 import { usePosts } from "../contexts/PostContext.jsx";
 
 import "../assets/css/posts/sorting.css";
 import "../assets/css/posts/pagination.css";
+import PaginationContainer from "../components/pagination/PaginationContainer.jsx";
 
 function Home() {
   const { state, dispatch } = usePosts();
@@ -76,10 +75,7 @@ function Home() {
         <Sorting />
       </div>
       <div className="posts container">{renderState()}</div>
-      <div className="pagination_container">
-        <Pagination />
-        <PageSize />
-      </div>
+      <PaginationContainer />
     </>
   );
 }
