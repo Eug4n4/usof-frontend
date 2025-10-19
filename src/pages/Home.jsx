@@ -21,13 +21,7 @@ function Home() {
     })
   );
   useEffect(() => {
-    let ignore = false;
-    if (!ignore) {
-      dispatch(getPosts());
-    }
-    return () => {
-      ignore = true;
-    };
+    dispatch(getPosts());
   }, [dispatch]);
 
   function renderState() {
@@ -62,7 +56,7 @@ function Home() {
         <Sorting />
       </div>
       <div className="posts container">{renderState()}</div>
-      <PaginationContainer />
+      <PaginationContainer purpose="posts" />
     </>
   );
 }
