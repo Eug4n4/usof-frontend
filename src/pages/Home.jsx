@@ -1,15 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import api from "../api/api.js";
+import { useEffect, useRef } from "react";
 import PostCard from "../components/card/PostCard.jsx";
 import Sorting from "../components/sorting/Sorting.jsx";
-import { usePosts } from "../contexts/PostContext.jsx";
+import PaginationContainer from "../components/pagination/PaginationContainer.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { getPosts } from "../features/state/postSlice.js";
 
 import "../assets/css/posts/sorting.css";
 import "../assets/css/posts/pagination.css";
-import PaginationContainer from "../components/pagination/PaginationContainer.jsx";
 
 function Home() {
-  const { state, dispatch } = usePosts();
+  const dispatch = useDispatch();
+  const { posts, loading } = useSelector((state) => state.posts);
   const dateTimeFormatter = useRef(
     Intl.DateTimeFormat("uk", {
       year: "numeric",
@@ -20,37 +21,23 @@ function Home() {
     })
   );
   useEffect(() => {
-    dispatch({ type: "load", data: true });
     let ignore = false;
-    api
-      .get("/posts")
-      .then((result) => {
-        if (!ignore) {
-          if (result.data?.data) {
-            dispatch({ type: "set", data: result.data.data });
-          }
-        }
-      })
-      .catch(console.log)
-      .finally(() => {
-        if (!ignore) {
-          dispatch({ type: "load", data: false });
-        }
-      });
-
+    if (!ignore) {
+      dispatch(getPosts());
+    }
     return () => {
       ignore = true;
     };
   }, [dispatch]);
 
   function renderState() {
-    if (state.loading) {
+    if (loading) {
       return <p>Loading...</p>;
     }
-    if (state.posts.length === 0) {
+    if (posts.length === 0) {
       return <p>{"No posts found :-("}</p>;
     }
-    return state.posts.map((post) => {
+    return posts.map((post) => {
       return (
         <PostCard
           key={post.id}

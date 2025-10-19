@@ -1,14 +1,16 @@
 import { useState } from "react";
-import "../../assets/css/sorting/sorting.css";
 import Filter from "../filter/Filter";
 import ButtonLink from "../button/ButtonLink";
 import Button from "../button/Button";
+import { useDispatch } from "react-redux";
+import { getPosts, query } from "../../features/state/postSlice";
+
 import s from "../button/button.module.css";
-import { usePosts } from "../../contexts/PostContext";
-import api from "../../api/api";
+import "../../assets/css/sorting/sorting.css";
+
 function Sorting() {
   const baseURL = import.meta.env.BASE_URL;
-  const { dispatch } = usePosts();
+  const dispatch = useDispatch();
   const [hiddenFilter, setFilterHidden] = useState(true);
   const [activeSort, setActiveSort] = useState("newest");
   const sortOptions = [
@@ -21,21 +23,11 @@ function Sorting() {
       query: "sort=dislikes&order=desc",
     },
   ];
-
-  const handleSortClick = async (option) => {
+  const handleSortClick = (option) => {
     setActiveSort(option.key);
-    dispatch({ type: "load", data: true });
-
-    try {
-      const result = await api.get(`/posts?${option.query}`);
-      if (result.data?.data) {
-        dispatch({ type: "set", data: result.data.data });
-      }
-    } finally {
-      dispatch({ type: "load", data: false });
-    }
+    dispatch(getPosts(option.query));
+    dispatch(query(option.query));
   };
-
   return (
     <div className="sorting_wrapper">
       <div className="sorting_container">
