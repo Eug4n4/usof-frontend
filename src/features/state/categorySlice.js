@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import CategoryService from "../../api/services/CategoryService";
+import { paginationReducers } from "./pagination";
 
 export const getCategories = createAsyncThunk(
     'categories/fetch',
@@ -17,7 +18,18 @@ const categorySlice = createSlice({
     name: "categories",
     initialState: {
         categories: [],
-        loading: true
+        loading: true,
+        totalRecords: 0,
+        totalPages: 1,
+        currentPage: 1,
+        pageSize: 5,
+        query: ""
+    },
+    reducers: {
+        query: (state, action) => {
+            state.query = action.payload;
+        },
+        ...paginationReducers
     },
     extraReducers: builder => {
         builder
@@ -35,5 +47,5 @@ const categorySlice = createSlice({
     }
 })
 
-
+export const { query, currentPage, pageSize } = categorySlice.actions;
 export default categorySlice.reducer

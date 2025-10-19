@@ -1,31 +1,46 @@
 import p from "./pagination.module.css";
 import s from "../button/button.module.css";
-import { useState } from "react";
+import { useMemo } from "react";
 import ButtonLink from "../button/ButtonLink";
 function Pagination({ purpose }) {
-  const [size, setSize] = useState(1);
+  const query = purpose.query;
+  const pages = useMemo(
+    () => Array.from({ length: purpose.totalPages }, (_, i) => i + 1),
+    [purpose.totalPages]
+  );
+
+  function changePage(newPage) {
+    let page = "";
+    if (query !== "") {
+      page += `${query}&`;
+    }
+    page += `page=${newPage}`;
+    purpose.changeCurrentPage(newPage);
+    purpose.goToPage(page);
+  }
 
   function mapPageLink(number) {
     let page = "";
-    if (purpose === "posts") {
-      page += "/";
-    } else if (purpose === "categories") {
-      page += "/categories";
+    if (query !== "") {
+      page += `?${query}&page=${number}`;
+    } else {
+      page += `?page=${number}`;
     }
-    page += `?page=${number}`;
     return page;
   }
   return (
     <div className={p.pages}>
-      {[1, 2, 3].map((amount) => {
+      {pages.map((item) => {
         return (
           <ButtonLink
-            to={mapPageLink(amount)}
-            key={amount}
-            className={size === amount ? s.active : ""}
-            onClick={() => setSize(amount)}
+            to={mapPageLink(item)}
+            key={item}
+            className={purpose.currentPage === item ? s.active : ""}
+            onClick={() => {
+              changePage(item);
+            }}
           >
-            {amount}
+            {item}
           </ButtonLink>
         );
       })}

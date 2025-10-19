@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import PostService from "../../api/services/PostService";
+import { paginationReducers } from "./pagination";
 export const getPosts = createAsyncThunk(
     'posts/fetch',
     async (query, { rejectWithValue }) => {
@@ -17,6 +18,10 @@ const postSlice = createSlice({
     initialState: {
         posts: [],
         loading: true,
+        totalRecords: 0,
+        totalPages: 1,
+        currentPage: 1,
+        pageSize: 5,
         query: ""
     },
     reducers: {
@@ -25,7 +30,8 @@ const postSlice = createSlice({
         },
         query: (state, action) => {
             state.query = action.payload;
-        }
+        },
+        ...paginationReducers
     },
     extraReducers: builder => {
         builder
@@ -35,7 +41,9 @@ const postSlice = createSlice({
             .addCase(getPosts.fulfilled, (state, action) => {
                 console.log(action.payload)
                 state.loading = false
-                state.posts = action.payload.data;
+                state.posts = action.payload.data
+                state.totalRecords = action.payload.total;
+                state.totalPages = Math.ceil(action.payload.total / state.pageSize) || 1;
             })
             .addCase(getPosts.rejected, state => {
                 state.loading = false;
@@ -45,5 +53,5 @@ const postSlice = createSlice({
 
 
 
-export const { set, query } = postSlice.actions;
+export const { set, query, currentPage, pageSize } = postSlice.actions;
 export default postSlice.reducer;

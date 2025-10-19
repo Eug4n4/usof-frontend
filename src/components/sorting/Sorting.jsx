@@ -3,13 +3,11 @@ import Filter from "../filter/Filter";
 import ButtonLink from "../button/ButtonLink";
 import Button from "../button/Button";
 import { useDispatch } from "react-redux";
-import { getPosts, query } from "../../features/state/postSlice";
 
 import s from "../button/button.module.css";
 import "../../assets/css/sorting/sorting.css";
 
-function Sorting() {
-  const baseURL = import.meta.env.BASE_URL;
+function Sorting({ getter, queryChanger, pageChanger, pageSizer }) {
   const dispatch = useDispatch();
   const [hiddenFilter, setFilterHidden] = useState(true);
   const [activeSort, setActiveSort] = useState("newest");
@@ -24,9 +22,11 @@ function Sorting() {
     },
   ];
   const handleSortClick = (option) => {
+    dispatch(pageChanger(1));
+    dispatch(pageSizer(5));
     setActiveSort(option.key);
-    dispatch(getPosts(option.query));
-    dispatch(query(option.query));
+    dispatch(getter(option.query));
+    dispatch(queryChanger(option.query));
   };
   return (
     <div className="sorting_wrapper">
@@ -35,7 +35,7 @@ function Sorting() {
           {sortOptions.map((option) => (
             <li key={option.key}>
               <ButtonLink
-                to={`${baseURL}?${option.query}`}
+                to={`?${option.query}`}
                 className={option.key === activeSort ? s.active : ""}
                 onClick={() => {
                   setActiveSort(option.key);

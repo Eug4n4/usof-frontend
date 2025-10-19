@@ -6,13 +6,25 @@ import AuthContext from "../../contexts/AuthContext.jsx";
 import { Link } from "react-router-dom";
 import PaginationContainer from "../../components/pagination/PaginationContainer.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../features/state/categorySlice.js";
+import {
+  currentPage,
+  getCategories,
+  pageSize,
+} from "../../features/state/categorySlice.js";
+import { usePagination } from "../../features/state/pagination.js";
 
 function Categories() {
   const dispatch = useDispatch();
+  const pagination = usePagination({
+    resource: "categories",
+    fetchThunk: getCategories,
+    actions: { currentPage, pageSize },
+  });
   const { categories, loading } = useSelector((state) => state.categories);
   const { user } = useContext(AuthContext);
   useEffect(() => {
+    dispatch(currentPage(1));
+    dispatch(pageSize(5));
     dispatch(getCategories());
   }, [dispatch]);
 
@@ -77,7 +89,7 @@ function Categories() {
             );
           })}
         </ul>
-        <PaginationContainer purpose={"categories"} />
+        <PaginationContainer purpose={pagination} />
       </>
     );
   }
