@@ -1,11 +1,11 @@
 import PageSize from "./PageSize";
 import Pagination from "./Pagination";
 
-function PaginationContainer() {
+function PaginationContainer({ purpose }) {
   return (
     <div className="pagination_container">
-      <Pagination />
-      <PageSize />
+      <Pagination purpose={purpose} />
+      <PageSize initialSize={5} purpose={purpose} />
     </div>
   );
 }
