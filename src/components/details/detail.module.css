@@ -1,0 +1,18 @@
+.details {
+    border: 1px solid red;
+    margin: 10px;
+}
+
+.details.top {
+    display: flex;
+}
+
+.details.anchors {
+    text-align: center;
+}
+
+.details.top > :first-child {
+    display: flex;
+    flex-direction: column;
+    padding-right: 1rem;
+}
