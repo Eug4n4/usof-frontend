@@ -1,38 +1,19 @@
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import { useEffect, useRef } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import Button from "../../components/button/Button";
 import Form from "../../components/form/Form";
 import TextInput from "../../components/input/TextInput";
 
 function CreatePost() {
-  const editorRef = useRef(null);
-  const quillRef = useRef(null);
-  const mountedRef = useRef(false);
-
-  useEffect(() => {
-    if (mountedRef.current) return;
-    mountedRef.current = true;
-
-    const editorDiv = document.createElement("div");
-    editorRef.current.appendChild(editorDiv);
-
-    const toolbarOptions = [
-      ["bold", "italic", "underline", "strike"],
-      ["blockquote", "code-block"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      [{ script: "sub" }, { script: "super" }],
-      [{ size: ["small", false, "large", "huge"] }],
-      [{ color: [] }, { background: [] }],
-    ];
-
-    quillRef.current = new Quill(editorDiv, {
-      placeholder: "Write your post...",
-      theme: "snow",
-      modules: { toolbar: toolbarOptions },
-    });
-  }, []);
-
+  const [lastChange, setLastChange] = useState();
+  const quillRef = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
     const html = quillRef.current?.root.innerHTML;
@@ -42,7 +23,7 @@ function CreatePost() {
   return (
     <Form onSubmit={handleSubmit}>
       <h2>New post</h2>
-      <fieldset style={{ minWidth: "100%" }}>
+      <fieldset>
         <label htmlFor="title">Title: </label>
         <TextInput
           name="title"
@@ -51,9 +32,13 @@ function CreatePost() {
           maxLength={100}
         />
       </fieldset>
-      <div id="editor_wrapper" ref={editorRef} />
+
+      <Editor ref={quillRef} onTextChange={setLastChange} />
       <fieldset>
-        <label htmlFor="categories">
+        <label
+          htmlFor="categories"
+          style={{ display: "flex", flexDirection: "column" }}
+        >
           Select at least 1 category for your post
         </label>
         <select name="categories" id="categories" multiple="multiple">
@@ -67,4 +52,43 @@ function CreatePost() {
     </Form>
   );
 }
+
+const Editor = forwardRef(({ onTextChange }, ref) => {
+  const containerRef = useRef(null);
+  const onTextChangeRef = useRef(onTextChange);
+  const toolbarOptions = [
+    ["bold", "italic", "underline", "strike"],
+    ["blockquote", "code-block"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    [{ script: "sub" }, { script: "super" }],
+    [{ size: ["small", false, "large", "huge"] }],
+  ];
+  useLayoutEffect(() => {
+    onTextChangeRef.current = onTextChange;
+  });
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const editorContainer = container.appendChild(
+      container.ownerDocument.createElement("div")
+    );
+    const quill = new Quill(editorContainer, {
+      modules: { toolbar: toolbarOptions },
+      theme: "snow",
+    });
+
+    ref.current = quill;
+
+    quill.on(Quill.events.TEXT_CHANGE, (...args) => {
+      onTextChangeRef.current?.(...args);
+    });
+
+    return () => {
+      ref.current = null;
+      container.innerHTML = "";
+    };
+  }, [ref]);
+
+  return <div ref={containerRef}></div>;
+});
 export default CreatePost;
