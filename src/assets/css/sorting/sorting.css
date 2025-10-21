@@ -8,6 +8,7 @@
 .sorting_options > li a {
     text-decoration: none;
     padding: 9px;
+    display: block;
 }
 
 .sorting_options > li a:visited, .sorting_options > li a:link {
