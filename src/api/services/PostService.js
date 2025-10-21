@@ -9,6 +9,14 @@ class PostService {
         }
 
     }
+
+    static async getById(id) {
+        return api.get(`posts/${id}`);
+    }
+
+    static async getComments(id) {
+        return api.get(`posts/${id}/comments`);
+    }
 }
 
 export default PostService
