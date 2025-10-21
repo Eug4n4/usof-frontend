@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonLink from "../button/ButtonLink";
 import Button from "../button/Button";
 import { useDispatch } from "react-redux";
@@ -21,6 +21,10 @@ function Sorting({ getter, queryChanger, pageChanger, pageSizer, filter }) {
       query: "sort=dislikes&order=desc",
     },
   ];
+  /* after changing sort option, move to the first page
+  change page size to initial value
+  change bg color of the button your clicked
+  set query parameters for this sorting response */
   const handleSortClick = (option) => {
     dispatch(pageChanger(1));
     dispatch(pageSizer(INITIAL_PAGE_SIZE));
@@ -48,13 +52,15 @@ function Sorting({ getter, queryChanger, pageChanger, pageSizer, filter }) {
           ))}
           <li>
             <div className="filter_container">
-              <Button
-                className={hiddenFilter ? "" : s.active}
-                onClick={() => setFilterHidden(!hiddenFilter)}
-              >
-                <img src="/filter_icon_black.svg" alt="filter" />
-                <p>Filter</p>
-              </Button>
+              {filter ? (
+                <Button
+                  className={hiddenFilter ? "" : s.active}
+                  onClick={() => setFilterHidden(!hiddenFilter)}
+                >
+                  <img src="/filter_icon_black.svg" alt="filter" />
+                  <p>Filter</p>
+                </Button>
+              ) : null}
             </div>
           </li>
         </ul>

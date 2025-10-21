@@ -17,6 +17,7 @@ import DeleteCategory from "./pages/categories/DeleteCategory";
 import CreatePost from "./pages/post/CreatePost";
 import PasswordReset from "./pages/auth/PasswordReset";
 import SetNewPassword from "./pages/auth/SetNewPassword";
+import Post from "./pages/post/Post";
 
 function App() {
   return (
@@ -55,6 +56,8 @@ function App() {
             </RoleChecker>
           }
         />
+
+        <Route path="post/:id" element={<Post />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>
