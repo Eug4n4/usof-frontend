@@ -5,6 +5,8 @@ import ButtonLink from "../button/ButtonLink";
 import Button from "../button/Button";
 import TextInput from "../input/TextInput";
 import AuthService from "../../api/services/AuthService";
+import Avatar from "../avatar/Avatar";
+import getUserAvatar from "../../features/avatars";
 
 function Header() {
   const { user, setUser } = useContext(AuthContext);
@@ -64,7 +66,15 @@ function Header() {
             </ButtonLink>
             <div className="user_avatar">
               <ButtonLink to="/profile" style={{ padding: "7px" }}>
-                <img src="/react.svg" alt="user" />
+                {user ? (
+                  <Avatar
+                    src={getUserAvatar(user.photo)}
+                    width={32}
+                    height={32}
+                  />
+                ) : (
+                  <Avatar src="/react.svg" />
+                )}
               </ButtonLink>
             </div>
             <div className="user_info">

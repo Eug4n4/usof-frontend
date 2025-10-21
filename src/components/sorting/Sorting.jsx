@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Filter from "../filter/Filter";
 import ButtonLink from "../button/ButtonLink";
 import Button from "../button/Button";
 import { useDispatch } from "react-redux";
@@ -8,7 +7,7 @@ import s from "../button/button.module.css";
 import "../../assets/css/sorting/sorting.css";
 import { INITIAL_PAGE_SIZE } from "../../features/constants";
 
-function Sorting({ getter, queryChanger, pageChanger, pageSizer }) {
+function Sorting({ getter, queryChanger, pageChanger, pageSizer, filter }) {
   const dispatch = useDispatch();
   const [hiddenFilter, setFilterHidden] = useState(true);
   const [activeSort, setActiveSort] = useState("newest");
@@ -59,7 +58,7 @@ function Sorting({ getter, queryChanger, pageChanger, pageSizer }) {
             </div>
           </li>
         </ul>
-        {hiddenFilter ? null : <Filter />}
+        {hiddenFilter ? null : filter ? filter : null}
       </div>
     </div>
   );

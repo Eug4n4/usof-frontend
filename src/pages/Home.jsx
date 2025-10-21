@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import PostCard from "../components/card/PostCard.jsx";
 import Sorting from "../components/sorting/Sorting.jsx";
 import PaginationContainer from "../components/pagination/PaginationContainer.jsx";
+import Filter from "../components/filter/Filter.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
   currentPage,
@@ -72,6 +73,7 @@ function Home() {
           queryChanger={query}
           pageChanger={currentPage}
           pageSizer={pageSize}
+          filter={<Filter />}
         />
       </div>
       <div className="posts container">{renderState()}</div>
