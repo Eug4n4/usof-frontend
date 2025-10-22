@@ -1,0 +1,15 @@
+.avatar_upload {
+ display: flex;
+ flex-direction: column;
+ max-width: min-content;
+}
+
+.avatar_upload button, .avatar_upload button:hover {
+    background-color: var(--text-color-black);
+    color: #f0f0f0;
+}
+
+.avatar_error {
+    color: red;
+    text-align: center;
+}
