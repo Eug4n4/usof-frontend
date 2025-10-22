@@ -14,5 +14,20 @@
 .details.top > :first-child {
     display: flex;
     flex-direction: column;
-    padding-right: 1rem;
+}
+
+.details.top > :first-child > img {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.details.top > :last-child {
+    padding-left: 1rem;
+}
+
+.details.controls {
+    text-align: right;
+}
+
+.details.controls button {
+    min-width: 100px;
 }

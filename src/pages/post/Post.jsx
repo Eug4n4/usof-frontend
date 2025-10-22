@@ -18,7 +18,7 @@ function Post() {
       .then((response) => setPost(response.data))
       .catch(() => setNotFound(true));
     PostService.getComments(id)
-      .then((response) => setComments(response.data))
+      .then((response) => setComments(response.data.data))
       .catch(console.log);
   }, []);
   return (
@@ -68,9 +68,12 @@ function Post() {
           listChildren={comments.map((comment) => {
             return (
               <CommentCard
+                key={comment.id}
                 author={comment.author}
                 content={comment.content}
                 publishDate={comment.comment_date}
+                likes={comment.likes}
+                dislikes={comment.dislikes}
               />
             );
           })}

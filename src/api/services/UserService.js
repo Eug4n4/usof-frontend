@@ -4,6 +4,10 @@ class UserService {
     static async updateAvatar(userId, data) {
         return api.patch(`users/${userId}/avatar`, data)
     }
+
+    static async updateCredentials(userId, data) {
+        return api.patch(`users/${userId}`, data);
+    }
 }
 
 export default UserService;
