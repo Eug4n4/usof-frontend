@@ -13,6 +13,7 @@ import Sorting from "../components/sorting/Sorting";
 import Filter from "../components/filter/Filter";
 import AvatarUpload from "../components/avatar/AvatarUpload";
 import ProfileForm from "../components/form/ProfileForm";
+import { postSortingOptions } from "../features/sorting.options";
 
 function Profile() {
   const { user } = useContext(AuthContext);
@@ -86,7 +87,13 @@ function Profile() {
             </>
           }
           listChildren={[]}
-          sortingChildren={<Sorting filter={<Filter />} />}
+          sortingChildren={
+            <Sorting
+              filter={<Filter />}
+              defaultSorting={"newest"}
+              sortingOptions={postSortingOptions}
+            />
+          }
         />
       ) : null}
     </>

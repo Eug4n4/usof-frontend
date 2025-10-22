@@ -6,6 +6,7 @@ import NoMatch from "../404";
 import Button from "../../components/button/Button";
 import Sorting from "../../components/sorting/Sorting";
 import CommentCard from "../../components/card/CommentCard";
+import { commentSortingOptions } from "../../features/sorting.options";
 
 function Post() {
   const { id } = useParams();
@@ -64,7 +65,12 @@ function Post() {
             </>
           }
           anchorChildren={<Button>Comments</Button>}
-          sortingChildren={<Sorting />}
+          sortingChildren={
+            <Sorting
+              defaultSorting={"least-liked"}
+              sortingOptions={commentSortingOptions}
+            />
+          }
           listChildren={comments.map((comment) => {
             return (
               <CommentCard

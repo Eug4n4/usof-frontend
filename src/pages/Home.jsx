@@ -15,6 +15,7 @@ import "../assets/css/posts/sorting.css";
 import "../assets/css/posts/pagination.css";
 import { usePagination } from "../features/state/pagination.js";
 import { INITIAL_PAGE_SIZE } from "../features/constants.js";
+import { postSortingOptions } from "../features/sorting.options.js";
 
 function Home() {
   const dispatch = useDispatch();
@@ -74,6 +75,8 @@ function Home() {
           pageChanger={currentPage}
           pageSizer={pageSize}
           filter={<Filter />}
+          defaultSorting={"most-liked"}
+          sortingOptions={postSortingOptions}
         />
       </div>
       <div className="posts container">{renderState()}</div>

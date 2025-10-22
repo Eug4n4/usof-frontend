@@ -7,20 +7,19 @@ import s from "../button/button.module.css";
 import "../../assets/css/sorting/sorting.css";
 import { INITIAL_PAGE_SIZE } from "../../features/constants";
 
-function Sorting({ getter, queryChanger, pageChanger, pageSizer, filter }) {
+function Sorting({
+  getter,
+  queryChanger,
+  pageChanger,
+  pageSizer,
+  filter,
+  sortingOptions,
+  defaultSorting,
+}) {
   const dispatch = useDispatch();
   const [hiddenFilter, setFilterHidden] = useState(true);
-  const [activeSort, setActiveSort] = useState("newest");
-  const sortOptions = [
-    { key: "newest", label: "Newest", query: "sort=date&order=desc" },
-    { key: "oldest", label: "Oldest", query: "sort=date&order=asc" },
-    { key: "most-liked", label: "Most liked", query: "sort=likes&order=desc" },
-    {
-      key: "most-disliked",
-      label: "Most disliked",
-      query: "sort=dislikes&order=desc",
-    },
-  ];
+  const [activeSort, setActiveSort] = useState(defaultSorting);
+
   /* after changing sort option, move to the first page
   change page size to initial value
   change bg color of the button your clicked
@@ -36,7 +35,7 @@ function Sorting({ getter, queryChanger, pageChanger, pageSizer, filter }) {
     <div className="sorting_wrapper">
       <div className="sorting_container">
         <ul className="sorting_options">
-          {sortOptions.map((option) => (
+          {sortingOptions.map((option) => (
             <li key={option.key}>
               <ButtonLink
                 to={`?${option.query}`}
