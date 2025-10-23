@@ -30,7 +30,7 @@ function Post() {
   const pagination = usePagination({
     resource: "postComments",
     fetchThunk: getPostComments,
-    actions: { currentPage, pageSize },
+    actions: { currentPage, pageSize, query },
   });
 
   useEffect(() => {
@@ -103,11 +103,10 @@ function Post() {
             return (
               <CommentCard
                 key={comment.id}
+                id={comment.id}
                 author={comment.author}
                 content={comment.content}
                 publishDate={comment.comment_date}
-                likes={comment.likes}
-                dislikes={comment.dislikes}
               />
             );
           })}
