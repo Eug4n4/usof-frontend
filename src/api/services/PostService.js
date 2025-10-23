@@ -20,6 +20,20 @@ class PostService {
         }
         return api.get(`posts/${id}/comments`)
     }
+
+    static async getUserPosts(query) {
+        if (query) {
+            return api.get(`users/posts?${query}`);
+        }
+        return api.get(`users/posts`)
+    }
+
+    static async getUserFavoritePosts(query) {
+        if (query) {
+            return api.get(`users/favorites?${query}`);
+        }
+        return api.get(`users/favorites`)
+    }
 }
 
 export default PostService
