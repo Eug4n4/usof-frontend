@@ -34,6 +34,10 @@ class PostService {
         }
         return api.get(`users/favorites`)
     }
+
+    static async createComment(postId, data) {
+        return api.post(`posts/${postId}/comment`, data)
+    }
 }
 
 export default PostService

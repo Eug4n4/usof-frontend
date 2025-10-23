@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { INITIAL_PAGE_SIZE } from "../../features/constants";
 import PaginationContainer from "../../components/pagination/PaginationContainer";
 import s from "../../components/details/detail.module.css";
+import CommentForm from "../../components/form/CommentForm";
 
 function Post() {
   const { id } = useParams();
@@ -97,18 +98,24 @@ function Post() {
           defaultSorting={"least-liked"}
           sortingOptions={commentSortingOptions}
         />
-        {comments.map((comment) => {
-          return (
-            <CommentCard
-              key={comment.id}
-              author={comment.author}
-              content={comment.content}
-              publishDate={comment.comment_date}
-              likes={comment.likes}
-              dislikes={comment.dislikes}
-            />
-          );
-        })}
+        <div>
+          {comments.map((comment) => {
+            return (
+              <CommentCard
+                key={comment.id}
+                author={comment.author}
+                content={comment.content}
+                publishDate={comment.comment_date}
+                likes={comment.likes}
+                dislikes={comment.dislikes}
+              />
+            );
+          })}
+        </div>
+        <div>
+          <CommentForm postId={post.id} />
+        </div>
+
         <PaginationContainer purpose={pagination} />
       </>
     );

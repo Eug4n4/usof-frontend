@@ -9,9 +9,10 @@ function CommentCard({ author, content, publishDate, likes, dislikes }) {
         <Paragraph text={`By: ${author}`} />
         <Paragraph text={`At: ${publishDate}`} />
       </div>
-      <div className="content">
-        <Paragraph text={content} />
-      </div>
+      <div
+        className="ql-editor"
+        dangerouslySetInnerHTML={{ __html: content }}
+      ></div>
       <div className="reactions">
         <Button>
           <svg

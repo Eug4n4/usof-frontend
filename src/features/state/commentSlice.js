@@ -57,6 +57,9 @@ const postCommentSlice = createSlice({
         query: (state, action) => {
             state.query = action.payload;
         },
+        addComment: (state, action) => {
+            state.comments.push(action.payload)
+        },
         ...paginationReducers
     },
     extraReducers: builder => {
@@ -84,5 +87,5 @@ const postCommentSlice = createSlice({
     }
 })
 
-export const { query, currentPage, pageSize, setPostId } = postCommentSlice.actions;
+export const { query, currentPage, pageSize, setPostId, addComment } = postCommentSlice.actions;
 export default postCommentSlice.reducer
