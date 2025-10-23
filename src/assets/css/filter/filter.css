@@ -1,7 +1,0 @@
-
-
-.sorting_container > div:last-of-type {
-    position: absolute;
-    background-color: var(--bg-color-main);
-    top: 100%;
-}

@@ -1,0 +1,19 @@
+.filter_form {
+    flex-grow: 1;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filters fieldset {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.filters fieldset div {
+    display: flex;
+    align-items: center;
+}

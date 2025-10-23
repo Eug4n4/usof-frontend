@@ -63,8 +63,8 @@ function Sorting({
             </div>
           </li>
         </ul>
-        {hiddenFilter ? null : filter ? filter : null}
       </div>
+      {hiddenFilter ? null : filter ? filter : null}
     </div>
   );
 }

@@ -1,10 +1,10 @@
-import "../../assets/css/filter/filter.css";
 import Button from "../button/Button";
-import Form from "../form/Form";
+import FilterForm from "../form/FilterForm";
 import Input from "../input/Input";
+
 function Filter() {
   return (
-    <Form>
+    <FilterForm>
       <fieldset>
         <legend>By category</legend>
         <label htmlFor="name">Name</label>
@@ -17,7 +17,7 @@ function Filter() {
       </fieldset>
       <fieldset>
         <legend>By status</legend>
-        <Input type="radio" name="option" id="active" />
+        <Input type="radio" name="option" id="active" checked />
         <label htmlFor="active">Active</label>
         <Input type="radio" name="option" id="inactive" />
         <label htmlFor="inactive">Inactive</label>
@@ -26,7 +26,7 @@ function Filter() {
         <Button type="submit">Apply</Button>
         <Button type="reset">Reset</Button>
       </fieldset>
-    </Form>
+    </FilterForm>
   );
 }
 

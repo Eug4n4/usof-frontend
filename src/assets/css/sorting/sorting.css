@@ -30,7 +30,9 @@
     display: flex;
     flex-direction: column;
 }
-
+.sorting_wrapper  #filter {
+    background-color: var(--bg-color-main);
+}
 
 .filter_container > button, .sorting_options {
     align-items: center;
