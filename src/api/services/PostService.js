@@ -14,8 +14,11 @@ class PostService {
         return api.get(`posts/${id}`);
     }
 
-    static async getComments(id) {
-        return api.get(`posts/${id}/comments`);
+    static async getComments(id, query) {
+        if (query) {
+            return api.get(`posts/${id}/comments?${query}`);
+        }
+        return api.get(`posts/${id}/comments`)
     }
 }
 
