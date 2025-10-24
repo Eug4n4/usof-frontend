@@ -74,7 +74,15 @@ function Home() {
           queryChanger={query}
           pageChanger={currentPage}
           pageSizer={pageSize}
-          filter={<Filter />}
+          filter={
+            <Filter
+              queryChanger={query}
+              pageChanger={currentPage}
+              pageSizer={pageSize}
+              query={pagination.query}
+              getter={getPosts}
+            />
+          }
           defaultSorting={"most-liked"}
           sortingOptions={postSortingOptions}
         />

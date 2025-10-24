@@ -75,9 +75,17 @@ function Profile() {
       return (
         <>
           <Sorting
-            filter={<Filter />}
+            filter={
+              <Filter
+                getter={getPosts}
+                pageChanger={currentPage}
+                pageSizer={pageSize}
+                queryChanger={query}
+                query={postPagination.query}
+              />
+            }
             sortingOptions={postSortingOptions}
-            defaultSorting={"newest"}
+            defaultSorting={"most-liked"}
             getter={getPosts}
             pageChanger={currentPage}
             pageSizer={pageSize}
@@ -103,9 +111,17 @@ function Profile() {
     return (
       <>
         <Sorting
-          filter={<Filter />}
+          filter={
+            <Filter
+              getter={getFavorites}
+              pageChanger={actions.currentPage}
+              pageSizer={actions.pageSize}
+              queryChanger={actions.query}
+              query={favoritePagination.query}
+            />
+          }
           sortingOptions={postSortingOptions}
-          defaultSorting={"newest"}
+          defaultSorting={"most-liked"}
           getter={getFavorites}
           pageChanger={actions.currentPage}
           pageSizer={actions.pageSize}
