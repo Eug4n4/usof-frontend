@@ -27,6 +27,8 @@ import {
 import { actions, getFavorites } from "../features/state/favoriteSlice";
 import PostCard from "../components/card/PostCard";
 import { INITIAL_PAGE_SIZE } from "../features/constants";
+import OwnPostCard from "../components/card/OwnPostCard";
+import formatDate from "../features/formatDate";
 
 function Profile() {
   const { user } = useContext(AuthContext);
@@ -92,7 +94,7 @@ function Profile() {
             queryChanger={query}
           />
           {ownPosts.map((post) => (
-            <PostCard
+            <OwnPostCard
               key={post.id}
               id={post.id}
               author={post.author}
@@ -100,7 +102,7 @@ function Profile() {
               content={post.content}
               dislikes={post.dislikes}
               likes={post.likes}
-              publishDate={post.publish_date}
+              publishDate={formatDate(new Date(post.publish_date))}
               title={post.title}
             />
           ))}
@@ -136,7 +138,7 @@ function Profile() {
             content={post.content}
             dislikes={post.dislikes}
             likes={post.likes}
-            publishDate={post.publish_date}
+            publishDate={formatDate(new Date(post.publish_date))}
             title={post.title}
           />
         ))}

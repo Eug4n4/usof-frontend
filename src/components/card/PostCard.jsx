@@ -3,6 +3,7 @@ import "../../assets/css/posts/card.css";
 import Card from "./Card";
 import Title from "./Title";
 import Paragraph from "./Paragraph";
+import getPreview from "../../features/getPreview";
 function PostCard({
   id,
   title,
@@ -19,7 +20,7 @@ function PostCard({
         <Link to={`/post/${id}`}>{title}</Link>
       </Title>
       <div className="content">
-        <Paragraph text={content} />
+        <Paragraph text={getPreview(content)} />
       </div>
       <div className="credentials">
         <Paragraph className="author" text={`By: ${author}`} />

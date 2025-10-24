@@ -18,6 +18,7 @@ import { INITIAL_PAGE_SIZE } from "../../features/constants";
 import PaginationContainer from "../../components/pagination/PaginationContainer";
 import s from "../../components/details/detail.module.css";
 import CommentForm from "../../components/form/CommentForm";
+import formatDate from "../../features/formatDate";
 
 function Post() {
   const { id } = useParams();
@@ -106,7 +107,7 @@ function Post() {
                 id={comment.id}
                 author={comment.author}
                 content={comment.content}
-                publishDate={comment.comment_date}
+                publishDate={formatDate(new Date(comment.comment_date))}
               />
             );
           })}

@@ -4,6 +4,16 @@
     padding: 8px 24px 8px 24px;
 }
 
+.card_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card_options {
+    display: flex;
+}
+
 .content > p {
     margin: 5px 0 5px 0;
 }

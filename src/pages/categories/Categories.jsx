@@ -45,17 +45,10 @@ function Categories() {
             return (
               <li key={category.id}>
                 <Card>
-                  <div
-                    className="card_header"
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
+                  <div className="card_header">
                     <Title>{category.title}</Title>
                     {user && user.role === "admin" ? (
-                      <div style={{ display: "flex" }}>
+                      <div className="card_options">
                         <Link to={`/categories/${category.id}/edit`}>
                           <svg
                             display="block"

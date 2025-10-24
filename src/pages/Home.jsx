@@ -16,6 +16,7 @@ import "../assets/css/posts/pagination.css";
 import { usePagination } from "../features/state/pagination.js";
 import { INITIAL_PAGE_SIZE } from "../features/constants.js";
 import { postSortingOptions } from "../features/sorting.options.js";
+import formatDate from "../features/formatDate.js";
 
 function Home() {
   const dispatch = useDispatch();
@@ -25,15 +26,7 @@ function Home() {
     fetchThunk: getPosts,
     actions: { currentPage, pageSize, query },
   });
-  const dateTimeFormatter = useRef(
-    Intl.DateTimeFormat("uk", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    })
-  );
+
   useEffect(() => {
     dispatch(currentPage(1));
     dispatch(pageSize(INITIAL_PAGE_SIZE));
@@ -55,9 +48,7 @@ function Home() {
           title={post.title}
           content={post.content}
           author={post.author}
-          publishDate={dateTimeFormatter.current.format(
-            new Date(post.publish_date)
-          )}
+          publishDate={formatDate(new Date(post.publish_date))}
           categories={post.categories}
           likes={post.likes}
           dislikes={post.dislikes}
