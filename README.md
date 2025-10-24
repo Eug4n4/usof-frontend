@@ -1,16 +1,35 @@
-# React + Vite
+# Usof frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This repository is frontend part of the project called usof - Q&A service for professional and enthusiast programmers.
+If you are interested in backend part of the project, please, check this repository - [usof-backend](https://github.com/Eug4n4/usof-backend)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech stack
 
-## React Compiler
+- **UI Library**: react
+- **State management**: redux
+- **HTTP Client**: axios
+- **Rich text editor**: quill
+- **JWT Decoder**: jwt-decode
+- **Cookie parser**: js-cookie
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Folder structure
 
-## Expanding the ESLint configuration
+```
+src/api/        - Axios instance and backend api calls.
+src/assets/css  - Reusable css styles.
+src/components/ - JSX Components which are used inside pages.
+src/contexts/   - Contains authentication context.
+src/features/   - Redux state and useful functions for working with constant values or user data like avatars.
+src/pages/      - JSX Components which are responsible for rendering the whole page.
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## How to run?
+
+> **Important!** In order to run this project make sure you already have Node.js >= 22.0.0 installed on your computer
+
+1. Clone this repository using this command `git clone https://github.com/Eug4n4/usof-frontend.git`.
+2. Change your working directory with `cd usof-frontend/`.
+3. Create .env file and copy paste constants from .env.example file.
+4. Run `npm run dev` to run development server.
