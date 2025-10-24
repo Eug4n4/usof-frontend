@@ -42,6 +42,14 @@ class PostService {
     static async createPost({ title, content, categories = [] }) {
         return api.post(`posts`, { title, content, categories })
     }
+
+    static async updatePost({ id, title, content, categories = [] }) {
+        return api.patch(`posts/${id}`, { title, content, categories })
+    }
+
+    static async deletePost(postId) {
+        return api.delete(`posts/${postId}`);
+    }
 }
 
 export default PostService

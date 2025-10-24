@@ -18,6 +18,8 @@ import CreatePost from "./pages/post/CreatePost";
 import PasswordReset from "./pages/auth/PasswordReset";
 import SetNewPassword from "./pages/auth/SetNewPassword";
 import Post from "./pages/post/Post";
+import UpdatePost from "./pages/post/UpdatePost";
+import DeletePost from "./pages/post/DeletePost";
 
 function App() {
   return (
@@ -58,6 +60,22 @@ function App() {
         />
 
         <Route path="post/:id" element={<Post />} />
+        <Route
+          path="post/:id/edit"
+          element={
+            <RoleChecker roles={["admin", "user"]}>
+              <UpdatePost />
+            </RoleChecker>
+          }
+        />
+        <Route
+          path="post/:id/delete"
+          element={
+            <RoleChecker roles={["admin", "user"]}>
+              <DeletePost />
+            </RoleChecker>
+          }
+        />
 
         <Route path="*" element={<NoMatch />} />
       </Route>
