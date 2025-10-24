@@ -15,6 +15,18 @@ export const getAllReactions = createAsyncThunk(
     }
 )
 
+export const deleteReaction = createAsyncThunk(
+    "reactions/delete",
+    async ({ purpose, id }, { rejectWithValue }) => {
+        try {
+            const result = await LikeService.deleteReaction(purpose, id);
+            return { purpose, id, data: result.data }
+        } catch (err) {
+            return rejectWithValue(err.message);
+        }
+    }
+)
+
 export const sendReaction = createAsyncThunk(
     "reactions/sendReaction",
     async ({ purpose, id, type }, { rejectWithValue }) => {
@@ -41,6 +53,7 @@ const reactionSlice = createSlice({
 
             const userReaction = target.userReactions[userId];
             if (userReaction === type) {
+                console.log("user reaction equal type")
                 target.counts[type === 1 ? "likes" : "dislikes"]--;
                 delete target.userReactions[userId];
             } else {

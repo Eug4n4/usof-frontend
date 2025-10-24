@@ -18,6 +18,15 @@ class LikeService {
         }
         return Promise.reject()
     }
+
+    static async deleteReaction(purpose, id) {
+        if (purpose === "posts") {
+            return api.delete(`posts/${id}/like`);
+        } else if (purpose === "comments") {
+            return api.post(`comments/${id}/like`);
+        }
+        return Promise.reject()
+    }
 }
 
 export default LikeService

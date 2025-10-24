@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+  deleteReaction,
   getAllReactions,
   sendReaction,
   toggleReactionLocal,
@@ -19,11 +20,14 @@ function Reactions({ purpose, id }) {
   const handleReaction = (type) => {
     if (!user) return;
     dispatch(toggleReactionLocal({ purpose, id, type, userId: user.id }));
-    dispatch(sendReaction({ purpose, id, type }));
+    if (userReaction === type) {
+      dispatch(deleteReaction({ purpose, id }));
+    } else {
+      dispatch(sendReaction({ purpose, id, type }));
+    }
   };
 
   useEffect(() => {
-    console.log("here");
     if (id) dispatch(getAllReactions({ purpose, id }));
   }, [dispatch, purpose, id]);
 
