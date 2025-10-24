@@ -13,6 +13,11 @@
     justify-self: center;
     padding: 1.5rem;
 }
+
+.form_wrapper > form .errors, .form_wrapper > form .success {
+    max-width: 469px;
+}
+
 .form_wrapper > form .errors {
     color: red;
 }

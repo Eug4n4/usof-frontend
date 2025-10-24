@@ -1,25 +1,19 @@
 import { useEffect, useState } from "react";
 import Input from "./Input";
 
-function CategoryInput({ name = "categories", value = [], onChange }) {
-  const [text, setText] = useState(value.join(", "));
+function CategoryInput({ name = "categories", value = "", onChange }) {
+  const [text, setText] = useState(value);
 
   useEffect(() => {
-    if (value.length === 0) {
-      setText("");
-    }
+    setText(value);
   }, [value]);
 
   function handleChange(e) {
+    console.log(e.target.value);
     const newText = e.target.value;
     setText(newText);
 
-    const categories = newText
-      .split(",")
-      .map((v) => v.trim())
-      .filter(Boolean);
-
-    onChange?.(categories);
+    onChange?.(newText);
   }
 
   return (
@@ -30,7 +24,7 @@ function CategoryInput({ name = "categories", value = [], onChange }) {
       autoComplete="off"
       value={text}
       onChange={handleChange}
-      placeholder="e.g. Java, Python, Rust"
+      placeholder="e.g. Java, Python ..."
     />
   );
 }

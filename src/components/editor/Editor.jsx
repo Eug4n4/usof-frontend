@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useLayoutEffect, useRef } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 
-const Editor = forwardRef(({ onTextChange }, ref) => {
+const Editor = forwardRef(({ onTextChange, value = "" }, ref) => {
   const containerRef = useRef(null);
   const onTextChangeRef = useRef(onTextChange);
   const toolbarOptions = [
@@ -37,6 +37,16 @@ const Editor = forwardRef(({ onTextChange }, ref) => {
       container.innerHTML = "";
     };
   }, [ref]);
+
+  useEffect(() => {
+    if (ref.current) {
+      const currentHTML = ref.current.root.innerHTML;
+
+      if (value !== currentHTML) {
+        ref.current.root.innerHTML = value || "";
+      }
+    }
+  }, [value]);
 
   return <div ref={containerRef}></div>;
 });

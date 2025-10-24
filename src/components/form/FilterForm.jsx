@@ -14,7 +14,7 @@ function FilterForm({ pageChanger, pageSizer, queryChanger, query, getter }) {
     from: "",
     to: "",
     option: "active",
-    categories: [],
+    categories: "",
   };
   const [filters, setFilters] = useState(initialFilters);
 
@@ -52,6 +52,10 @@ function FilterForm({ pageChanger, pageSizer, queryChanger, query, getter }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const categories = filters.categories
+      .split(",")
+      .map((c) => c.trim())
+      .filter(Boolean);
     let updatedQuery = String(query);
     updatedQuery = clearQueryFromFilters(updatedQuery);
 
@@ -64,8 +68,8 @@ function FilterForm({ pageChanger, pageSizer, queryChanger, query, getter }) {
     if (filters.to) {
       updatedQuery += `&endDate=${filters.to}`;
     }
-    if (filters.categories.length) {
-      for (const c of filters.categories) {
+    if (categories.length) {
+      for (const c of categories) {
         updatedQuery += `&category=${c}`;
       }
     }
@@ -85,7 +89,10 @@ function FilterForm({ pageChanger, pageSizer, queryChanger, query, getter }) {
               name="categories"
               value={filters.categories}
               onChange={(categories) =>
-                setFilters((prev) => ({ ...prev, categories }))
+                setFilters((prev) => ({
+                  ...prev,
+                  categories: categories,
+                }))
               }
             />
           </div>

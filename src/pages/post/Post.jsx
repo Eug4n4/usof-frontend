@@ -61,7 +61,7 @@ function Post() {
             <Reactions id={id} purpose={"posts"} />
           </div>
           <div
-            className="top right"
+            className="top right ql-editor"
             dangerouslySetInnerHTML={{ __html: post.content }}
           ></div>
         </section>
