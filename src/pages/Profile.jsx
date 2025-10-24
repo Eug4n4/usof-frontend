@@ -40,13 +40,17 @@ function Profile() {
   const postPagination = usePagination({
     resource: "profile",
     fetchThunk: getPosts,
-    actions: { currentPage, pageSize },
+    actions: { currentPage, pageSize, query },
   });
 
   const favoritePagination = usePagination({
     resource: "favorite",
     fetchThunk: getFavorites,
-    actions: { currentPage: actions.currentPage, pageSize: actions.pageSize },
+    actions: {
+      currentPage: actions.currentPage,
+      pageSize: actions.pageSize,
+      query: actions.query,
+    },
   });
   const favoriteButtonKey = "favorite";
   const postButtonKey = "post";

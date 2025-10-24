@@ -2,6 +2,7 @@ import ButtonLink from "../button/ButtonLink";
 import { useMemo, useState } from "react";
 import s from "../button/button.module.css";
 import p from "./pagination.module.css";
+import Button from "../button/Button";
 
 function PageSize({ initialSize, purpose }) {
   const query = purpose.query;
@@ -10,31 +11,20 @@ function PageSize({ initialSize, purpose }) {
   }, [initialSize]);
 
   function changePageSize(newSize) {
-    let pageSize = "";
-    if (query !== "") {
-      pageSize += `${query}&`;
-    }
-    pageSize += `pageSize=${newSize}`;
+    const updatedQuery = query.replace(/[&\?]pageSize=\d+/, "");
+    const newQuery = `${updatedQuery}${
+      updatedQuery ? "&" : ""
+    }pageSize=${newSize}`;
     purpose.setPageSize(newSize);
     purpose.changeCurrentPage(1);
-    purpose.changePageSize(pageSize);
-  }
-
-  function mapPageSizeLink(size) {
-    let pageSize = "";
-    if (query !== "") {
-      pageSize += `?${query}&pageSize=${size}`;
-    } else {
-      pageSize += `?pageSize=${size}`;
-    }
-    return pageSize;
+    purpose.changePageSize(newQuery);
+    purpose.setQuery(newQuery);
   }
 
   return (
     <div className={p.page_sizes}>
       {availableSizes.map((amount) => (
-        <ButtonLink
-          to={mapPageSizeLink(amount)}
+        <Button
           key={amount}
           className={purpose.pageSize === amount ? s.active : ""}
           onClick={() => {
@@ -42,7 +32,7 @@ function PageSize({ initialSize, purpose }) {
           }}
         >
           {amount}
-        </ButtonLink>
+        </Button>
       ))}
       <p>Per page</p>
     </div>

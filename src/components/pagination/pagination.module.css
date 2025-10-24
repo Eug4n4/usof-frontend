@@ -3,7 +3,7 @@
     column-gap: 0.5rem;
     align-items: center;
 }
-.page_sizes > a, .pages > a {
+.page_sizes > button, .pages > button {
     padding: 8px 12px 8px 12px;
     border: var(--main-border);
 }

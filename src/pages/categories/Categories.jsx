@@ -10,6 +10,7 @@ import {
   currentPage,
   getCategories,
   pageSize,
+  query,
 } from "../../features/state/categorySlice.js";
 import { usePagination } from "../../features/state/pagination.js";
 import { INITIAL_PAGE_SIZE } from "../../features/constants.js";
@@ -19,7 +20,7 @@ function Categories() {
   const pagination = usePagination({
     resource: "categories",
     fetchThunk: getCategories,
-    actions: { currentPage, pageSize },
+    actions: { currentPage, pageSize, query },
   });
   const { categories, loading } = useSelector((state) => state.categories);
   const { user } = useContext(AuthContext);

@@ -2,6 +2,7 @@ import p from "./pagination.module.css";
 import s from "../button/button.module.css";
 import { useMemo } from "react";
 import ButtonLink from "../button/ButtonLink";
+import Button from "../button/Button";
 function Pagination({ purpose }) {
   const query = purpose.query;
   const pages = useMemo(
@@ -19,21 +20,11 @@ function Pagination({ purpose }) {
     purpose.goToPage(page);
   }
 
-  function mapPageLink(number) {
-    let page = "";
-    if (query !== "") {
-      page += `?${query}&page=${number}`;
-    } else {
-      page += `?page=${number}`;
-    }
-    return page;
-  }
   return (
     <div className={p.pages}>
       {pages.map((item) => {
         return (
-          <ButtonLink
-            to={mapPageLink(item)}
+          <Button
             key={item}
             className={purpose.currentPage === item ? s.active : ""}
             onClick={() => {
@@ -41,7 +32,7 @@ function Pagination({ purpose }) {
             }}
           >
             {item}
-          </ButtonLink>
+          </Button>
         );
       })}
     </div>

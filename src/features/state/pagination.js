@@ -31,6 +31,13 @@ export function usePagination({ resource, fetchThunk, actions }) {
         [dispatch, resource, fetchThunk]
     );
 
+    const setQuery = useCallback(
+        (newQuery) => {
+            dispatch(actions.query(newQuery))
+        },
+        [dispatch, resource]
+    )
+
     const changePageSize = useCallback(
         (size) => {
             dispatch(fetchThunk(size));
@@ -55,6 +62,7 @@ export function usePagination({ resource, fetchThunk, actions }) {
         goToPage,
         changePageSize,
         setPageSize,
-        changeCurrentPage
+        changeCurrentPage,
+        setQuery
     };
 }

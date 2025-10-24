@@ -23,7 +23,7 @@ function Home() {
   const pagination = usePagination({
     resource: "posts",
     fetchThunk: getPosts,
-    actions: { currentPage, pageSize },
+    actions: { currentPage, pageSize, query },
   });
   const dateTimeFormatter = useRef(
     Intl.DateTimeFormat("uk", {
