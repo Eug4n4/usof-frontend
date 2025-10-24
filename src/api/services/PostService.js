@@ -38,6 +38,10 @@ class PostService {
     static async createComment(postId, data) {
         return api.post(`posts/${postId}/comment`, data)
     }
+
+    static async createPost({ title, content, categories = [] }) {
+        return api.post(`posts`, { title, content, categories })
+    }
 }
 
 export default PostService

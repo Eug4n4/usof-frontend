@@ -1,24 +1,33 @@
-import Quill from "quill";
-import "quill/dist/quill.snow.css";
-import {
-  forwardRef,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useRef, useState } from "react";
 import Button from "../../components/button/Button";
 import Form from "../../components/form/Form";
 import TextInput from "../../components/input/TextInput";
 import Editor from "../../components/editor/Editor";
+import CategoryInput from "../../components/input/CategoryInput";
+import PostService from "../../api/services/PostService";
+
+import s from "../../components/form/form.module.css";
 
 function CreatePost() {
-  const [lastChange, setLastChange] = useState();
+  const [categories, setCategories] = useState([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
   const quillRef = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
-    const html = quillRef.current?.root.innerHTML;
-    console.log("Post content:", html);
+    setSubmitting(true);
+    const { title } = Object.fromEntries(new FormData(e.target));
+    const htmlContent = quillRef.current?.root.innerHTML;
+    console.log(categories);
+    PostService.createPost({ title, content: htmlContent, categories })
+      .then(() => setSuccess(true))
+      .catch(() =>
+        setError(
+          "There is an error. Some category may not exists or content length is less than 50 characters"
+        )
+      )
+      .finally(() => setSubmitting(false));
   };
 
   return (
@@ -34,22 +43,28 @@ function CreatePost() {
         />
       </fieldset>
 
-      <Editor ref={quillRef} onTextChange={setLastChange} />
+      <Editor ref={quillRef} />
       <fieldset>
         <label
           htmlFor="categories"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          Select at least 1 category for your post
+          Categories
         </label>
-        <select name="categories" id="categories" multiple="multiple">
-          <option value="First">First</option>
-          <option value="Second">Second</option>
-          <option value="Third">Third</option>
-        </select>
+        <CategoryInput
+          name="categories"
+          value={categories}
+          onChange={(categories) => setCategories(categories)}
+        />
       </fieldset>
 
-      <Button type="submit">Publish</Button>
+      <Button type="submit" disabled={submitting}>
+        {submitting ? "Submitting..." : "Publish"}
+      </Button>
+      <div className={error !== "" ? s.errors : s.success}>
+        {error !== "" && <p>{error}</p>}
+        {success && <p>Successfully created a post!</p>}
+      </div>
     </Form>
   );
 }

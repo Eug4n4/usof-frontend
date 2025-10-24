@@ -13,6 +13,13 @@
     justify-self: center;
     padding: 1.5rem;
 }
+.form_wrapper > form .errors {
+    color: red;
+}
+
+.form_wrapper > form .success {
+    color: green;
+}
 
 .form_wrapper > form button, .form_wrapper > form button:hover  {
     background-color: var(--text-color-black);
