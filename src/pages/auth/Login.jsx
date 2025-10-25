@@ -7,9 +7,12 @@ import TextInput from "../../components/input/TextInput";
 import PasswordInput from "../../components/input/PasswordInput";
 import Form from "../../components/form/Form";
 
+import s from "../../components/form/form.module.css";
+
 function Login() {
   const { user, setUser } = useContext(AuthContext);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -27,7 +30,9 @@ function Login() {
       );
       setUser(response.data);
     } catch (error) {
-      console.log(error);
+      setError(
+        "There is an error. Make sure password, email and login matches"
+      );
     } finally {
       setSubmitting(false);
     }
@@ -63,6 +68,9 @@ function Login() {
           <Link to={"/signup"}>Sign Up</Link>
         </p>
         <Link to={"/password-reset"}>Forgot password?</Link>
+      </div>
+      <div className={error !== "" ? s.errors : ""}>
+        {error !== "" && <p>{error}</p>}
       </div>
     </Form>
   );

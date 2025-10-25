@@ -6,9 +6,14 @@ import TextInput from "../../components/input/TextInput";
 import Input from "../../components/input/Input";
 import PasswordInput from "../../components/input/PasswordInput";
 import Form from "../../components/form/Form";
+
+import s from "../../components/form/form.module.css";
+
 function Register() {
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
   async function handleRegister(e) {
     e.preventDefault();
     setSubmitting(true);
@@ -19,7 +24,9 @@ function Register() {
       await AuthService.register(data);
       navigate("/signin");
     } catch (error) {
-      console.log(error);
+      setError(
+        "There is an error. Make sure you entered valid full name and login"
+      );
     } finally {
       setSubmitting(false);
     }
@@ -67,6 +74,9 @@ function Register() {
           <br />
           <Link to={"/signin"}>Sign In</Link>
         </p>
+      </div>
+      <div className={error !== "" ? s.errors : ""}>
+        {error !== "" && <p>{error}</p>}
       </div>
     </Form>
   );
