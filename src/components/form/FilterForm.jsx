@@ -20,22 +20,21 @@ function FilterForm({ pageChanger, pageSizer, queryChanger, query, getter }) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    console.log(name, value);
     setFilters((prev) => ({ ...prev, [name]: value }));
   }
 
   function clearQueryFromFilters(query) {
     if (query.includes("status")) {
-      query = query.replace(/[&\?]status=\w+/, "");
+      query = query.replace(/[&\?]?status=\w+/, "");
     }
     if (query.includes("startDate")) {
-      query = query.replace(/[&\?]startDate=[-\d]+/, "");
+      query = query.replace(/[&\?]?startDate=[-\d]+/, "");
     }
     if (query.includes("endDate")) {
-      query = query.replace(/[&\?]endDate=[-\d]+/, "");
+      query = query.replace(/[&\?]?endDate=[-\d]+/, "");
     }
     if (query.includes("category")) {
-      query = query.replaceAll(/[&\?]category=.+/g, "");
+      query = query.replaceAll(/[&\?]?category=.+/g, "");
     }
     return query;
   }
@@ -59,9 +58,7 @@ function FilterForm({ pageChanger, pageSizer, queryChanger, query, getter }) {
     let updatedQuery = String(query);
     updatedQuery = clearQueryFromFilters(updatedQuery);
 
-    updatedQuery += `${updatedQuery.length ? "&" : "?"}status=${
-      filters.option
-    }`;
+    updatedQuery += `${updatedQuery.length ? "&" : ""}status=${filters.option}`;
     if (filters.from) {
       updatedQuery += `&startDate=${filters.from}`;
     }

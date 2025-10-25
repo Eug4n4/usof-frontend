@@ -20,7 +20,14 @@ function CreatePost() {
     const { title } = Object.fromEntries(new FormData(e.target));
     const htmlContent = quillRef.current?.root.innerHTML;
     console.log(categories);
-    PostService.createPost({ title, content: htmlContent, categories })
+    PostService.createPost({
+      title,
+      content: htmlContent,
+      categories: categories
+        .split(",")
+        .map((c) => c.trim())
+        .filter(Boolean),
+    })
       .then(() => {
         setError("");
         setSuccess(true);

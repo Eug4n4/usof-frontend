@@ -29,9 +29,10 @@ import PostCard from "../components/card/PostCard";
 import { INITIAL_PAGE_SIZE } from "../features/constants";
 import OwnPostCard from "../components/card/OwnPostCard";
 import formatDate from "../features/formatDate";
+import UserService from "../api/services/UserService";
 
 function Profile() {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const ownPosts = useSelector((state) => state.profile.ownPosts);
@@ -57,6 +58,11 @@ function Profile() {
   const favoriteButtonKey = "favorite";
   const postButtonKey = "post";
 
+  useEffect(() => {
+    if (user?.id) {
+      UserService.getById(user.id).then((response) => setUser(response.data));
+    }
+  }, []);
   useEffect(() => {
     if (!user) {
       navigate("/signin", { replace: true });
