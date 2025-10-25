@@ -127,7 +127,7 @@ function Profile() {
               </Button>
             )}
           </>
-          <section className={`${d.details} ${d.top}`}>
+          <section className={`${d.details} ${d.top} ${d.profile}`}>
             <div className="top left" style={{ alignSelf: "center" }}>
               <Avatar
                 src={getUserAvatar(user.photo)}

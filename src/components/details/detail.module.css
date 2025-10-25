@@ -4,9 +4,11 @@
 
 .details.top {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     border: var(--layout-border);
+}
+
+.details.top.profile {
+    justify-content: center;
 }
 
 .details.anchors {

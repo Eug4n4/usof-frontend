@@ -1,0 +1,29 @@
+.menu_button {
+    display: none;
+    cursor: pointer;
+}
+
+.menu {
+    display: none;
+}
+
+
+
+@media (max-width: 854px) {
+    .menu_button {
+        display: block;
+    }
+
+    .menu.open {
+        display: block;
+        border: var(--layout-border);
+    }
+
+    .menu div {
+        display: flex;
+    }
+
+    .menu div > a, .menu div > button {
+        flex: 1 1 auto;
+    }
+}
