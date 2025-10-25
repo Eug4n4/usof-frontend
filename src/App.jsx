@@ -20,6 +20,7 @@ import SetNewPassword from "./pages/auth/SetNewPassword";
 import Post from "./pages/post/Post";
 import UpdatePost from "./pages/post/UpdatePost";
 import DeletePost from "./pages/post/DeletePost";
+import DeleteComment from "./pages/comments/DeleteComment";
 
 function App() {
   return (
@@ -73,6 +74,15 @@ function App() {
           element={
             <RoleChecker roles={["admin", "user"]}>
               <DeletePost />
+            </RoleChecker>
+          }
+        />
+
+        <Route
+          path="comment/:id/delete"
+          element={
+            <RoleChecker roles={["admin", "user"]}>
+              <DeleteComment />
             </RoleChecker>
           }
         />

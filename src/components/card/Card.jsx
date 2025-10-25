@@ -1,5 +1,9 @@
-function Card({ children }) {
-  return <section className="card">{children}</section>;
+function Card({ children, ...rest }) {
+  return (
+    <section className="card" {...rest}>
+      {children}
+    </section>
+  );
 }
 
 export default Card;

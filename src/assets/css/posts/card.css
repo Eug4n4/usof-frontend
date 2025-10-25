@@ -4,6 +4,10 @@
     padding: 8px 24px 8px 24px;
 }
 
+.card[aria-disabled="true"] {
+    opacity: 0.8;
+}
+
 .card_header {
     display: flex;
     justify-content: space-between;
@@ -12,6 +16,10 @@
 
 .card_options {
     display: flex;
+}
+
+.card_options svg {
+    cursor: pointer;
 }
 
 .content > p {

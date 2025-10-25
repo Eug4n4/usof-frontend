@@ -11,7 +11,7 @@ import AuthContext from "../../contexts/AuthContext";
 import b from "./button.module.css";
 import Button from "./Button";
 
-function Reactions({ purpose, id }) {
+function Reactions({ purpose, id, status }) {
   const dispatch = useDispatch();
   const { user } = useContext(AuthContext);
   const target = useSelector((state) => state.reactions[purpose][id]);
@@ -34,6 +34,7 @@ function Reactions({ purpose, id }) {
   return (
     <>
       <Button
+        disabled={status === 0}
         onClick={() => handleReaction(1)}
         className={userReaction === 1 ? b.active : ""}
       >
@@ -49,6 +50,7 @@ function Reactions({ purpose, id }) {
         {counts.likes}
       </Button>
       <Button
+        disabled={status === 0}
         onClick={() => handleReaction(0)}
         className={userReaction === 0 ? b.active : ""}
       >

@@ -10,6 +10,10 @@
     padding: 10px;
 }
 
+.button:disabled {
+    opacity: 0.6;
+}
+
 .button:hover, .active {
     background-color: var(--bg-color-main);
 }

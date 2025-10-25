@@ -86,6 +86,7 @@ function Post() {
                 author={comment.author}
                 content={comment.content}
                 publishDate={formatDate(new Date(comment.comment_date))}
+                status={comment.status}
               />
             );
           })}
