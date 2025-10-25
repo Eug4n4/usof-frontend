@@ -37,8 +37,7 @@ function Sorting({
         <ul className="sorting_options">
           {sortingOptions.map((option) => (
             <li key={option.key}>
-              <ButtonLink
-                to={`?${option.query}`}
+              <Button
                 className={option.key === activeSort ? s.active : ""}
                 onClick={() => {
                   setActiveSort(option.key);
@@ -46,7 +45,7 @@ function Sorting({
                 }}
               >
                 {option.label}
-              </ButtonLink>
+              </Button>
             </li>
           ))}
           <li>
