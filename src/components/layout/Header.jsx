@@ -22,7 +22,7 @@ function Header() {
         <li>
           <div className="header_left">
             <ButtonLink to="/" style={{ padding: "7px" }}>
-              <img src="/react.svg" alt="logo" />
+              <p>USOF</p>
             </ButtonLink>
             <ButtonLink to="/about">About</ButtonLink>
           </div>
@@ -73,13 +73,19 @@ function Header() {
                     height={32}
                   />
                 ) : (
-                  <Avatar src="/react.svg" />
+                  <Avatar src="/broken_image.svg" width={32} height={32} />
                 )}
               </ButtonLink>
             </div>
             <div className="user_info">
-              <p>{user ? user.login : "Login"}</p>
-              <p>{user ? user.role : "User"}</p>
+              {user ? (
+                <>
+                  <p>{user.login}</p>
+                  <p>{user.role}</p>
+                </>
+              ) : (
+                <p>N/A</p>
+              )}
             </div>
           </div>
         </li>
