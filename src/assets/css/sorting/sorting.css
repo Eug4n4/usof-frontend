@@ -1,5 +1,6 @@
 .sorting_options {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
     list-style: none;
 

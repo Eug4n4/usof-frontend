@@ -11,8 +11,6 @@ import {
   query,
 } from "../features/state/postSlice.js";
 
-import "../assets/css/posts/sorting.css";
-import "../assets/css/posts/pagination.css";
 import { usePagination } from "../features/state/pagination.js";
 import { INITIAL_PAGE_SIZE } from "../features/constants.js";
 import { postSortingOptions } from "../features/sorting.options.js";

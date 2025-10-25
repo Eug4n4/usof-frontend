@@ -76,23 +76,6 @@ function Profile() {
     if (activeButton === postButtonKey) {
       return (
         <>
-          <Sorting
-            filter={
-              <Filter
-                getter={getPosts}
-                pageChanger={currentPage}
-                pageSizer={pageSize}
-                queryChanger={query}
-                query={postPagination.query}
-              />
-            }
-            sortingOptions={postSortingOptions}
-            defaultSorting={"most-liked"}
-            getter={getPosts}
-            pageChanger={currentPage}
-            pageSizer={pageSize}
-            queryChanger={query}
-          />
           {ownPosts.map((post) => (
             <OwnPostCard
               key={post.id}
@@ -106,29 +89,11 @@ function Profile() {
               title={post.title}
             />
           ))}
-          <PaginationContainer purpose={postPagination} />
         </>
       );
     }
     return (
       <>
-        <Sorting
-          filter={
-            <Filter
-              getter={getFavorites}
-              pageChanger={actions.currentPage}
-              pageSizer={actions.pageSize}
-              queryChanger={actions.query}
-              query={favoritePagination.query}
-            />
-          }
-          sortingOptions={postSortingOptions}
-          defaultSorting={"most-liked"}
-          getter={getFavorites}
-          pageChanger={actions.currentPage}
-          pageSizer={actions.pageSize}
-          queryChanger={actions.query}
-        />
         {favorites.map((post) => (
           <PostCard
             key={post.id}
@@ -142,7 +107,6 @@ function Profile() {
             title={post.title}
           />
         ))}
-        <PaginationContainer purpose={favoritePagination} />
       </>
     );
   }
@@ -162,7 +126,6 @@ function Profile() {
                 Cancel
               </Button>
             )}
-            <Button>Delete profile</Button>
           </>
           <section className={`${d.details} ${d.top}`}>
             <div className="top left" style={{ alignSelf: "center" }}>
@@ -199,7 +162,49 @@ function Profile() {
               Favorites
             </Button>
           </section>
+          {activeButton === postButtonKey ? (
+            <Sorting
+              filter={
+                <Filter
+                  getter={getPosts}
+                  pageChanger={currentPage}
+                  pageSizer={pageSize}
+                  queryChanger={query}
+                  query={postPagination.query}
+                />
+              }
+              sortingOptions={postSortingOptions}
+              defaultSorting={"most-liked"}
+              getter={getPosts}
+              pageChanger={currentPage}
+              pageSizer={pageSize}
+              queryChanger={query}
+            />
+          ) : (
+            <Sorting
+              filter={
+                <Filter
+                  getter={getFavorites}
+                  pageChanger={actions.currentPage}
+                  pageSizer={actions.pageSize}
+                  queryChanger={actions.query}
+                  query={favoritePagination.query}
+                />
+              }
+              sortingOptions={postSortingOptions}
+              defaultSorting={"most-liked"}
+              getter={getFavorites}
+              pageChanger={actions.currentPage}
+              pageSizer={actions.pageSize}
+              queryChanger={actions.query}
+            />
+          )}
           <section className={`${d.details} list`}>{renderList()}</section>
+          {activeButton === postButtonKey ? (
+            <PaginationContainer purpose={postPagination} />
+          ) : (
+            <PaginationContainer purpose={favoritePagination} />
+          )}
         </>
       ) : null}
     </>

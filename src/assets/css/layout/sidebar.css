@@ -23,3 +23,10 @@
 .sidebar_list > li > div > a > img {
     max-width: 100%;
 }
+
+
+@media screen and (width <= 488px) {
+    .sidebar {
+        display: none;
+    }
+}

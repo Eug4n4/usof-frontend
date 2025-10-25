@@ -1,14 +1,17 @@
 .details {
-    border: 1px solid red;
     margin: 10px;
 }
 
 .details.top {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: var(--layout-border);
 }
 
 .details.anchors {
     text-align: center;
+    border-bottom: var(--layout-border);
 }
 
 .details.top > :first-child {
@@ -21,13 +24,9 @@
 }
 
 .details.top > :last-child {
-    padding-left: 1rem;
+    padding-left: min(16px, 5%);
 }
 
 .details.controls {
     text-align: right;
-}
-
-.details.controls button {
-    min-width: 100px;
 }

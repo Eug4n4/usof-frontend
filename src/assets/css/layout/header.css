@@ -4,6 +4,8 @@
 
 .header_list, .header_list > li, .header_left, .header_right, .search_group.form {
     display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 1;
 }
 
 
@@ -55,3 +57,24 @@ header {
     font: normal normal normal larger FontAwesome
 }
 
+@media screen and (width <= 854px) {
+    .header_list .search_parent {
+        display: none;
+    }
+    .header_list {
+        justify-content: space-between;
+    }
+
+    .header_right > :not(.new_post):nth-child(-n+3) {
+        display: none;
+    }
+
+}
+
+
+@media screen and (width <= 954px) {
+    .search_parent {
+        margin: 0;
+        flex-grow: 1;
+    }
+}
