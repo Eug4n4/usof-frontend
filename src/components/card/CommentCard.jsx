@@ -8,7 +8,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Reactions from "../button/Reactions";
 import CommentService from "../../api/services/CommentService";
 
-function CommentCard({ id, author, content, publishDate, status }) {
+import s from "./card.module.css";
+import Avatar from "../avatar/Avatar";
+import getUserAvatar from "../../features/avatars";
+
+function CommentCard({ id, author, photo, content, publishDate, status }) {
   const { user } = useContext(AuthContext);
   const [currentStatus, setStatus] = useState(status);
   function handleClick(newStatus) {
@@ -18,13 +22,9 @@ function CommentCard({ id, author, content, publishDate, status }) {
   }
   return (
     <Card aria-disabled={currentStatus === 0 ? "true" : "false"}>
-      <div className="card_header">
-        <div className="credentials">
-          <Paragraph text={`By: ${author}`} />
-          <Paragraph text={`At: ${publishDate}`} />
-        </div>
+      <div className={s.card_header}>
         {user?.login === author && (
-          <div className="card_options">
+          <div className={s.card_options}>
             <Link to={`/comment/${id}/delete`}>
               <svg
                 display="block"
@@ -69,8 +69,24 @@ function CommentCard({ id, author, content, publishDate, status }) {
         className="ql-editor"
         dangerouslySetInnerHTML={{ __html: content }}
       ></div>
-      <div className="reactions">
+      <div className={s.reactions}>
         <Reactions id={id} purpose={"comments"} status={currentStatus} />
+        <div className={s.credentials}>
+          <div className="author_photo">
+            <Avatar
+              src={getUserAvatar(photo)}
+              alt="user"
+              width={24}
+              height={24}
+            />
+          </div>
+          <div>
+            <Paragraph className="author" text={`${author}`} />
+          </div>
+          <time>
+            <Paragraph className="date" text={`At ${publishDate}`} />
+          </time>
+        </div>
       </div>
     </Card>
   );

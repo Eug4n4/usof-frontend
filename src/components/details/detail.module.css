@@ -16,7 +16,7 @@
     border-bottom: var(--layout-border);
 }
 
-.details.top > :first-child {
+.details.top > :first-child > :first-child {
     display: flex;
     flex-direction: column;
 }

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "../../assets/css/posts/card.css";
 import Card from "./Card";
 import Title from "./Title";
 import Paragraph from "./Paragraph";
@@ -8,11 +7,17 @@ import PostService from "../../api/services/PostService";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { actions } from "../../features/state/favoriteSlice";
+import getUserAvatar from "../../features/avatars";
+import Avatar from "../avatar/Avatar";
+
+import s from "./card.module.css";
+
 function PostCard({
   id,
   title,
   content,
   author,
+  photo,
   publishDate,
   categories,
   likes,
@@ -52,11 +57,11 @@ function PostCard({
 
   return (
     <Card>
-      <div className="card_header">
+      <div className={s.card_header}>
         <Title>
           <Link to={`/post/${id}`}>{title}</Link>
         </Title>
-        <div className="card_options">
+        <div className={s.card_options}>
           {isInFavorite ? (
             <svg
               onClick={() => handleFavoriteClick(false)}
@@ -84,18 +89,14 @@ function PostCard({
           )}
         </div>
       </div>
-      <div className="content">
+      <div className={s.content}>
         <Paragraph text={getPreview(content)} />
       </div>
-      <div className="credentials">
-        <Paragraph className="author" text={`By: ${author}`} />
-        <Paragraph className="date" text={`Published at ${publishDate}`} />
-      </div>
-      <div className="stats" style={{ display: "flex", gap: "10px" }}>
+      <div className={s.stats}>
         <Paragraph className={"likes"} text={`Likes: ${likes}`} />
         <Paragraph className={"dislikes"} text={`Dislikes: ${dislikes}`} />
       </div>
-      <div className="categories">
+      <div className={s.categories}>
         <ul>
           {categories.map((category) => {
             if (category.id && category.title) {
@@ -103,6 +104,22 @@ function PostCard({
             }
           })}
         </ul>
+        <div className={s.credentials}>
+          <div className="author_photo">
+            <Avatar
+              src={getUserAvatar(photo)}
+              alt="user"
+              width={24}
+              height={24}
+            />
+          </div>
+          <div>
+            <Paragraph className="author" text={`${author}`} />
+          </div>
+          <time>
+            <Paragraph className="date" text={`At ${publishDate}`} />
+          </time>
+        </div>
       </div>
     </Card>
   );

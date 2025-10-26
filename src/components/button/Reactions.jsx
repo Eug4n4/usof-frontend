@@ -32,7 +32,7 @@ function Reactions({ purpose, id, status }) {
   }, [dispatch, purpose, id]);
 
   return (
-    <>
+    <div>
       <Button
         disabled={status === 0}
         onClick={() => handleReaction(1)}
@@ -65,7 +65,7 @@ function Reactions({ purpose, id, status }) {
         </svg>
         {counts.dislikes}
       </Button>
-    </>
+    </div>
   );
 }
 

@@ -3,12 +3,17 @@ import Title from "./Title";
 import Paragraph from "./Paragraph";
 import Card from "./Card";
 import getPreview from "../../features/getPreview";
+import Avatar from "../avatar/Avatar";
+import getUserAvatar from "../../features/avatars";
+
+import s from "./card.module.css";
 
 function OwnPostCard({
   id,
   title,
   content,
   author,
+  photo,
   publishDate,
   categories,
   likes,
@@ -16,11 +21,11 @@ function OwnPostCard({
 }) {
   return (
     <Card>
-      <div className="card_header">
+      <div className={s.card_header}>
         <Title>
           <Link to={`/post/${id}`}>{title}</Link>
         </Title>
-        <div className="card_options">
+        <div className={s.card_options}>
           <Link to={`/post/${id}/edit`}>
             <svg
               display="block"
@@ -48,18 +53,14 @@ function OwnPostCard({
         </div>
       </div>
 
-      <div className="content">
+      <div className={s.content}>
         <Paragraph text={getPreview(content)} />
       </div>
-      <div className="credentials">
-        <Paragraph className="author" text={`By: ${author}`} />
-        <Paragraph className="date" text={`Published at ${publishDate}`} />
-      </div>
-      <div className="stats" style={{ display: "flex", gap: "10px" }}>
+      <div className={s.stats}>
         <Paragraph className={"likes"} text={`Likes: ${likes}`} />
         <Paragraph className={"dislikes"} text={`Dislikes: ${dislikes}`} />
       </div>
-      <div className="categories">
+      <div className={s.categories}>
         <ul>
           {categories.map((category) => {
             if (category.id && category.title) {
@@ -67,6 +68,22 @@ function OwnPostCard({
             }
           })}
         </ul>
+        <div className={s.credentials}>
+          <div className="author_photo">
+            <Avatar
+              src={getUserAvatar(photo)}
+              alt="user"
+              width={24}
+              height={24}
+            />
+          </div>
+          <div>
+            <Paragraph className="author" text={`${author}`} />
+          </div>
+          <time>
+            <Paragraph className="date" text={`At ${publishDate}`} />
+          </time>
+        </div>
       </div>
     </Card>
   );

@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import ButtonLink from "../button/ButtonLink";
+import { useState } from "react";
 import Button from "../button/Button";
 import { useDispatch } from "react-redux";
 
 import s from "../button/button.module.css";
-import "../../assets/css/sorting/sorting.css";
+import ss from "./sorting.module.css";
+
 import { INITIAL_PAGE_SIZE } from "../../features/constants";
 
 function Sorting({
@@ -32,9 +32,9 @@ function Sorting({
     dispatch(queryChanger(option.query));
   };
   return (
-    <div className="sorting_wrapper">
-      <div className="sorting_container">
-        <ul className="sorting_options">
+    <div className={ss.sorting_wrapper}>
+      <div className={ss.sorting_container}>
+        <ul className={ss.sorting_options}>
           {sortingOptions.map((option) => (
             <li key={option.key}>
               <Button
@@ -49,7 +49,7 @@ function Sorting({
             </li>
           ))}
           <li>
-            <div className="filter_container">
+            <div className={ss.filter_container}>
               {filter ? (
                 <Button
                   className={hiddenFilter ? "" : s.active}

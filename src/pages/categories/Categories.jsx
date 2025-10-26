@@ -14,6 +14,9 @@ import {
 } from "../../features/state/categorySlice.js";
 import { usePagination } from "../../features/state/pagination.js";
 import { INITIAL_PAGE_SIZE } from "../../features/constants.js";
+import getPreview from "../../features/getPreview.js";
+
+import s from "../../components/card/card.module.css";
 
 function Categories() {
   const dispatch = useDispatch();
@@ -45,10 +48,10 @@ function Categories() {
             return (
               <li key={category.id}>
                 <Card>
-                  <div className="card_header">
+                  <div className={s.card_header}>
                     <Title>{category.title}</Title>
                     {user && user.role === "admin" ? (
-                      <div className="card_options">
+                      <div className={s.card_options}>
                         <Link to={`/categories/${category.id}/edit`}>
                           <svg
                             display="block"
@@ -76,8 +79,8 @@ function Categories() {
                       </div>
                     ) : null}
                   </div>
-                  <div className="content">
-                    <Paragraph text={category.description} />
+                  <div className={s.content}>
+                    <Paragraph text={getPreview(category.description)} />
                   </div>
                 </Card>
               </li>

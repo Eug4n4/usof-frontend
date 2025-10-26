@@ -1,6 +1,8 @@
+import s from "./card.module.css";
+
 function Card({ children, ...rest }) {
   return (
-    <section className="card" {...rest}>
+    <section className={s.card} {...rest}>
       {children}
     </section>
   );

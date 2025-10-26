@@ -1,0 +1,15 @@
+.not_found {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.not_found div {
+    padding: 10px;
+}
+
+.not_found a, .not_found a:hover {
+    background-color: var(--text-color-black);
+    color: #f0f0f0;
+}

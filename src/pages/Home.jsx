@@ -46,6 +46,7 @@ function Home() {
           title={post.title}
           content={post.content}
           author={post.author}
+          photo={post.photo}
           publishDate={formatDate(new Date(post.publish_date))}
           categories={post.categories}
           likes={post.likes}

@@ -87,6 +87,7 @@ function Profile() {
               key={post.id}
               id={post.id}
               author={post.author}
+              photo={post.photo}
               categories={post.categories}
               content={post.content}
               dislikes={post.dislikes}
@@ -105,6 +106,7 @@ function Profile() {
             key={post.id}
             id={post.id}
             author={post.author}
+            photo={post.photo}
             categories={post.categories}
             content={post.content}
             dislikes={post.dislikes}
