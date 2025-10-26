@@ -32,3 +32,8 @@
 .details.controls {
     text-align: right;
 }
+
+
+.comments_section > h2, .details.list > h2 {
+    text-align: center;
+}

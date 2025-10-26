@@ -38,7 +38,9 @@ function Categories() {
       return <p>Loading...</p>;
     }
     if (categories.length === 0) {
-      return <p>{"No categories found :-("}</p>;
+      return (
+        <h2 style={{ textAlign: "center" }}>{"No categories found :-("}</h2>
+      );
     }
     return (
       <>

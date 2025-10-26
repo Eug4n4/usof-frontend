@@ -36,7 +36,7 @@ function Home() {
       return <p>Loading...</p>;
     }
     if (posts.length === 0) {
-      return <p>{"No posts found :-("}</p>;
+      return <h2 style={{ textAlign: "center" }}>{"No posts found :-("}</h2>;
     }
     return posts.map((post) => {
       return (

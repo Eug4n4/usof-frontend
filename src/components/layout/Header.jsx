@@ -53,7 +53,6 @@ function Header() {
               <ButtonLink to="/" style={{ padding: "7px" }}>
                 <p>USOF</p>
               </ButtonLink>
-              <ButtonLink to="/about">About</ButtonLink>
             </div>
           </li>
           <li className="search_parent">

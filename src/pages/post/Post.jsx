@@ -77,19 +77,23 @@ function Post() {
           defaultSorting={"least-liked"}
           sortingOptions={commentSortingOptions}
         />
-        <div>
-          {comments.map((comment) => {
-            return (
-              <CommentCard
-                key={comment.id}
-                id={comment.id}
-                author={comment.author}
-                content={comment.content}
-                publishDate={formatDate(new Date(comment.publish_date))}
-                status={comment.status}
-              />
-            );
-          })}
+        <div className={s.comments_section}>
+          {comments.length === 0 ? (
+            <h2>There are no comments. Create the first one!</h2>
+          ) : (
+            comments.map((comment) => {
+              return (
+                <CommentCard
+                  key={comment.id}
+                  id={comment.id}
+                  author={comment.author}
+                  content={comment.content}
+                  publishDate={formatDate(new Date(comment.publish_date))}
+                  status={comment.status}
+                />
+              );
+            })
+          )}
         </div>
         <div>
           <CommentForm postId={post.id} />

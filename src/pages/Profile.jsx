@@ -82,8 +82,34 @@ function Profile() {
     if (activeButton === postButtonKey) {
       return (
         <>
-          {ownPosts.map((post) => (
-            <OwnPostCard
+          {ownPosts.length === 0 ? (
+            <h2>You don't have your own posts</h2>
+          ) : (
+            ownPosts.map((post) => (
+              <OwnPostCard
+                key={post.id}
+                id={post.id}
+                author={post.author}
+                photo={post.photo}
+                categories={post.categories}
+                content={post.content}
+                dislikes={post.dislikes}
+                likes={post.likes}
+                publishDate={formatDate(new Date(post.publish_date))}
+                title={post.title}
+              />
+            ))
+          )}
+        </>
+      );
+    }
+    return (
+      <>
+        {favorites.length === 0 ? (
+          <h2>You don't have favorite posts</h2>
+        ) : (
+          favorites.map((post) => (
+            <PostCard
               key={post.id}
               id={post.id}
               author={post.author}
@@ -95,26 +121,8 @@ function Profile() {
               publishDate={formatDate(new Date(post.publish_date))}
               title={post.title}
             />
-          ))}
-        </>
-      );
-    }
-    return (
-      <>
-        {favorites.map((post) => (
-          <PostCard
-            key={post.id}
-            id={post.id}
-            author={post.author}
-            photo={post.photo}
-            categories={post.categories}
-            content={post.content}
-            dislikes={post.dislikes}
-            likes={post.likes}
-            publishDate={formatDate(new Date(post.publish_date))}
-            title={post.title}
-          />
-        ))}
+          ))
+        )}
       </>
     );
   }
@@ -207,7 +215,7 @@ function Profile() {
               queryChanger={actions.query}
             />
           )}
-          <section className={`${d.details} list`}>{renderList()}</section>
+          <section className={`${d.details} ${d.list}`}>{renderList()}</section>
           {activeButton === postButtonKey ? (
             <PaginationContainer purpose={postPagination} />
           ) : (

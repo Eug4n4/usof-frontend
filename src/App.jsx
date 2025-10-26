@@ -3,7 +3,6 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Sidebar from "./components/layout/Sidebar";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import NoMatch from "./pages/404";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -27,7 +26,6 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
         <Route path="signin" element={<Login />} />
         <Route path="signup" element={<Register />} />
         <Route path="password-reset/:token" element={<SetNewPassword />} />
