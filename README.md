@@ -36,4 +36,10 @@ Refer to `DOCS.md` in order to find information about steps completed during the
 1. Clone this repository using this command `git clone https://github.com/Eug4n4/usof-frontend.git`.
 2. Change your working directory with `cd usof-frontend/`.
 3. Create .env file and copy paste constants from .env.example file.
-4. Run `npm install` and then `npm run dev` to run development server.
+4. Run `npm run dev` to run development server.
+
+## Screenshots
+
+<img width="1899" height="914" alt="profile" src="https://github.com/user-attachments/assets/c9b7cc8c-e39a-42f0-b44d-2fbedb323068" />
+
+<img width="1895" height="914" alt="main" src="https://github.com/user-attachments/assets/6356ac53-d071-4c22-ac9d-fff5cc666787" />
