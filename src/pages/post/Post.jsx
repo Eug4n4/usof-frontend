@@ -85,7 +85,7 @@ function Post() {
                 id={comment.id}
                 author={comment.author}
                 content={comment.content}
-                publishDate={formatDate(new Date(comment.comment_date))}
+                publishDate={formatDate(new Date(comment.publish_date))}
                 status={comment.status}
               />
             );
