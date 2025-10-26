@@ -32,6 +32,9 @@ const favoriteSlice = createSlice({
         query: (state, action) => {
             state.query = action.payload;
         },
+        remove: (state, action) => {
+            state.favorites = state.favorites.filter(post => post.id !== action.payload.postId);
+        },
         ...paginationReducers
     },
     extraReducers: builder => {

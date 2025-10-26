@@ -10,6 +10,10 @@ class PostService {
 
     }
 
+    static async getFavoriteById(postId, signal) {
+        return api.get(`posts/${postId}/favorite`, { signal: signal })
+    }
+
     static async getById(id) {
         return api.get(`posts/${id}`);
     }
@@ -33,6 +37,15 @@ class PostService {
             return api.get(`users/favorites?${query}`);
         }
         return api.get(`users/favorites`)
+    }
+
+    static async addToFavorites(postId) {
+        return api.post(`posts/${postId}/favorite`)
+
+    }
+
+    static async deleteFromFavorites(postId) {
+        return api.delete(`posts/${postId}/favorite`)
     }
 
     static async createComment(postId, data) {
