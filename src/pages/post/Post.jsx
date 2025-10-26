@@ -87,6 +87,7 @@ function Post() {
                   key={comment.id}
                   id={comment.id}
                   author={comment.author}
+                  photo={comment.photo}
                   content={comment.content}
                   publishDate={formatDate(new Date(comment.publish_date))}
                   status={comment.status}
