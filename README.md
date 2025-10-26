@@ -18,12 +18,16 @@ If you are interested in backend part of the project, please, check this reposit
 
 ```
 src/api/        - Axios instance and backend api calls.
-src/assets/css  - Reusable css styles.
+src/assets/     - Layout css styles.
 src/components/ - JSX Components which are used inside pages.
 src/contexts/   - Contains authentication context.
 src/features/   - Redux state and useful functions for working with constant values or user data like avatars.
 src/pages/      - JSX Components which are responsible for rendering the whole page.
 ```
+
+## Documentation
+
+Refer to `DOCS.md` in order to find information about steps completed during the development process.
 
 ## How to run?
 
@@ -32,4 +36,4 @@ src/pages/      - JSX Components which are responsible for rendering the whole p
 1. Clone this repository using this command `git clone https://github.com/Eug4n4/usof-frontend.git`.
 2. Change your working directory with `cd usof-frontend/`.
 3. Create .env file and copy paste constants from .env.example file.
-4. Run `npm run dev` to run development server.
+4. Run `npm install` and then `npm run dev` to run development server.
