@@ -33,3 +33,10 @@ src/pages/      - JSX Components which are responsible for rendering the whole p
 2. Change your working directory with `cd usof-frontend/`.
 3. Create .env file and copy paste constants from .env.example file.
 4. Run `npm run dev` to run development server.
+
+## Screenshots
+
+<img width="1899" height="914" alt="profile" src="https://github.com/user-attachments/assets/c9b7cc8c-e39a-42f0-b44d-2fbedb323068" />
+
+<img width="1895" height="914" alt="main" src="https://github.com/user-attachments/assets/6356ac53-d071-4c22-ac9d-fff5cc666787" />
+
