@@ -1,14 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "./Card";
 import Title from "./Title";
 import Paragraph from "./Paragraph";
 import getPreview from "../../features/getPreview";
 import PostService from "../../api/services/PostService";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { actions } from "../../features/state/favoriteSlice";
 import getUserAvatar from "../../features/avatars";
 import Avatar from "../avatar/Avatar";
+import AuthContext from "../../contexts/AuthContext";
 
 import s from "./card.module.css";
 
@@ -23,6 +24,8 @@ function PostCard({
   likes,
   dislikes,
 }) {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [isInFavorite, setInFavorite] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -45,13 +48,17 @@ function PostCard({
   }, [id]);
 
   async function handleFavoriteClick(shouldAdd) {
-    if (shouldAdd) {
-      PostService.addToFavorites(id).then(() => setInFavorite(true));
+    if (user) {
+      if (shouldAdd) {
+        PostService.addToFavorites(id).then(() => setInFavorite(true));
+      } else {
+        PostService.deleteFromFavorites(id).then((response) => {
+          setInFavorite(false);
+          dispatch(actions.remove({ postId: response.data.post_id }));
+        });
+      }
     } else {
-      PostService.deleteFromFavorites(id).then((response) => {
-        setInFavorite(false);
-        dispatch(actions.remove({ postId: response.data.post_id }));
-      });
+      navigate("/signin", { replace: true });
     }
   }
 
